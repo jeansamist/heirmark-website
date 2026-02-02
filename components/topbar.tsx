@@ -51,7 +51,7 @@ export function Topbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`font-semibold transition ${
+                  className={`transition ${
                     isActiveLink(link.href)
                       ? "text-primary"
                       : "text-muted-foreground hover:text-primary"

@@ -43,7 +43,13 @@
   body {
     @apply bg-background text-foreground;
     font-family: Arial, Helvetica, sans-serif;
-    width: 100vw;
-    overflow-x: hidden;
   }
+  body,
+  html {
+    overflow-x: hidden !important;
+  }
+}
+
+.filter {
+  filter: saturate(0);
 }

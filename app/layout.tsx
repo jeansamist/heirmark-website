@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontSans.variable} ${fontSerif.variable} antialiased`}
+        className={`${fontSans.variable} ${fontSerif.variable} antialiased font-sans`}
       >
         <Topbar />
         {children}
