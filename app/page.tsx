@@ -241,7 +241,7 @@ export default function Home() {
               href="/heirmark-framework"
               className="h-14 px-6 py-4 flex items-center text-base justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
             >
-              Pre-order the complete HeirMark Collection
+              Pre-order Collection
             </Link>
           </div>
         </div>
