@@ -2,25 +2,48 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f1f24;
+  --primary: #2d5f6e;
+  --primary-foreground: #ffffff;
+  --secondary: #e9b44c;
+  --secondary-foreground: #ffffff;
+  --tertiary: #f4dba9;
+  --tertiary-foreground: #0f1f24;
+  --muted-foreground: #0f1f2480;
+  --muted: #0f1f2415;
+  --accent: #0f1f2410;
+  --border: #0f1f2410;
+  --accent-foreground: #0f1f24;
+  --ring: #f4dba9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans-sans);
+  --font-serif: var(--font-abril-fatface-serif);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+  }
 }
