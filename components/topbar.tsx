@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -16,6 +16,9 @@ const navLinks = [
 
 export function Topbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
 
   const isActiveLink = (href: string) => {
@@ -29,8 +32,50 @@ export function Topbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      const shouldHide = isScrollingDown && currentScrollY > 120;
+
+      setIsHidden(shouldHide);
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const heroSection = document.getElementById("top");
+    if (!heroSection) {
+      setIsPastHero(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsPastHero(!entry.isIntersecting);
+      },
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0 }
+    );
+
+    observer.observe(heroSection);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <nav className="h-20 bg-linear-to-b from-background via-background/70 to-transparent fixed top-0 left-0 w-full z-50">
+    <nav
+      className={`h-20 fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        isHidden ? "-translate-y-full" : "translate-y-0"
+      } ${
+        isPastHero
+          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
       <div className="container h-full mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="shrink-0">
@@ -51,10 +96,12 @@ export function Topbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`transition ${
+                  className={`transition font-semibold ${
                     isActiveLink(link.href)
                       ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      : isPastHero
+                      ? "text-foreground/80 hover:text-foreground"
+                      : "text-primary-foreground/80 hover:text-primary-foreground"
                   }`}
                 >
                   {link.label}
@@ -75,7 +122,11 @@ export function Topbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
-          className="lg:hidden p-2 text-primary hover:bg-primary/10 rounded-md transition"
+          className={`lg:hidden p-2 rounded-md transition ${
+            isPastHero
+              ? "text-foreground hover:bg-foreground/10"
+              : "text-primary-foreground hover:bg-primary-foreground/10"
+          }`}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
