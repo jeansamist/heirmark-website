@@ -33,7 +33,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-foreground text-white pt-20 pb-8">
+    <footer id="footer" className="bg-foreground text-white pt-20 pb-8">
       <div className="container mx-auto px-6 mb-16">
         <Reveal className="bg-secondary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-secondary/40">
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">

@@ -1,4 +1,5 @@
 import Collection from "@/components/home/Collection";
+import ContactSection from "@/components/contact/ContactSection";
 import Events from "@/components/home/Events";
 import FinalCta from "@/components/home/FinalCta";
 import Footer from "@/components/home/Footer";
@@ -15,6 +16,7 @@ export default function Home() {
       <Events />
       <Founder />
       <FinalCta />
+      <ContactSection />
       <Footer />
     </main>
   );

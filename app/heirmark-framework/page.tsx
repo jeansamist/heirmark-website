@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/home/Footer";
 import { ArrowRight, BookOpen, Heart, Leaf } from "lucide-react";
 import Image from "next/image";
@@ -391,6 +392,7 @@ export default function HeirmarkFrameworkPage() {
         </div>
       </section>
 
+      <ContactSection />
       <Footer />
     </main>
   );
