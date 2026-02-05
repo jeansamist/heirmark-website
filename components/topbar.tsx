@@ -51,6 +51,7 @@ export function Topbar() {
   useEffect(() => {
     const heroSection = document.getElementById("top");
     if (!heroSection) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsPastHero(true);
       return;
     }

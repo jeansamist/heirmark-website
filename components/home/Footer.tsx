@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Reveal from "@/components/Reveal";
 import {
   ArrowRight,
   Facebook,
@@ -6,7 +6,7 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
-import Reveal from "@/components/Reveal";
+import Link from "next/link";
 
 const footerLinks = {
   explore: [
@@ -46,7 +46,10 @@ export default function Footer() {
                 href="/pre-order"
                 className="inline-flex items-center gap-2 border border-white/30 min-h-12 bg-white text-secondary text-lg px-8 h-14 rounded-full font-bold hover:bg-white/90 transition"
               >
-                Grab My HeirMark Collection
+                <span className="hidden md:inline">
+                  Grab My HeirMark Collection
+                </span>
+                <span className="md:hidden text-sm">Grab Collection</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -84,7 +87,10 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-white/80">
             {footerLinks.explore.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="hover:text-secondary transition">
+                <Link
+                  href={link.href}
+                  className="hover:text-secondary transition"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -99,7 +105,10 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-white/80">
             {footerLinks.work.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="hover:text-secondary transition">
+                <Link
+                  href={link.href}
+                  className="hover:text-secondary transition"
+                >
                   {link.label}
                 </Link>
               </li>
