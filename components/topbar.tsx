@@ -52,11 +52,11 @@ export function Topbar() {
 
   useEffect(() => {
     const heroSection = document.getElementById("top");
-    if (!heroSection || !isHomePage) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsPastHero(true);
-      return;
-    }
+    // if (!heroSection || !isHomePage ) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsPastHero(true);
+    return;
+    // }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -65,7 +65,7 @@ export function Topbar() {
       { rootMargin: "-80px 0px 0px 0px", threshold: 0 }
     );
 
-    observer.observe(heroSection);
+    // observer.observe(heroSection);
     return () => observer.disconnect();
   }, [isHomePage]);
 

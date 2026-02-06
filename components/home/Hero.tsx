@@ -25,10 +25,10 @@ export default function Hero() {
           src="/family-legacy.png"
           alt="HeirMark legacy"
           fill
-          className="object-cover opacity-70"
+          className="hidden md:block object-cover opacity-70"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-b from-primary/10 via-primary/90 to-primary" />
+        <div className="absolute inset-0 bg-linear-to-b from-primary/90 md:from-primary/10 via-primary/90 to-primary" />
       </div>
       <div className="container relative z-10 px-6 py-16 md:py-24 flex flex-col mx-auto items-center text-center text-primary-foreground">
         <Reveal className="space-y-6 max-w-4xl">
