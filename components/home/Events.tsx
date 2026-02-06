@@ -206,7 +206,7 @@ export default function Events() {
                   type="button"
                   className="w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-white/90"
                 >
-                  Book now
+                  Book your ticket
                 </button>
               </div>
             </div>

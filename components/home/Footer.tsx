@@ -6,6 +6,7 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const footerLinks = {
@@ -33,7 +34,17 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-foreground text-white pt-20 pb-8">
+    <footer
+      id="footer"
+      className="bg-foreground relative text-white pt-20 pb-8 overflow-hidden"
+    >
+      <Image
+        src="/icon-white.png"
+        alt="HeirMark Logo"
+        className="absolute top-0 left-0 opacity-5 pointer-events-none -translate-x-1/2 translate-y-1/3"
+        width={800}
+        height={800}
+      />
       <div className="container mx-auto px-6 mb-16">
         <Reveal className="bg-secondary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-secondary/40">
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
@@ -59,7 +70,12 @@ export default function Footer() {
 
       <div className="container mx-auto px-6 grid md:grid-cols-4 gap-12 border-t border-white/10 pt-16">
         <div className="space-y-6">
-          <h3 className="font-serif text-2xl font-bold">HEIRMARK</h3>
+          <Image
+            src="/icon-white.png"
+            alt="HeirMark Logo"
+            width={64}
+            height={64}
+          />
           <p className="text-white/60 text-sm">
             Transforming lived experiences into Legacy.
           </p>
