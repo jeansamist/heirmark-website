@@ -31,13 +31,13 @@ export default function Framework() {
   return (
     <section id="framework" className="py-24 md:py-32 relative bg-background">
       <Image
-        src="/nda-tree.webp"
+        src="/leefs.png"
         alt="HeirMark heritage pattern"
-        width={620}
-        height={620}
-        className="pointer-events-none absolute right-0 h-full w-auto aspect-square top-0 bottom-0 translate-x-1/2 hidden filter opacity-10 md:block"
+        width={1920}
+        height={1080 / 2}
+        className="pointer-events-none absolute right-0 z-0 w-full bottom-0 hidden object-contain md:block"
       />
-      <div className="container mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <Reveal className="space-y-8">
             <div className="space-y-4">

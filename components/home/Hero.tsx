@@ -22,7 +22,7 @@ export default function Hero() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/rendered-scaled.jpg"
+          src="/family-legacy.png"
           alt="HeirMark legacy"
           fill
           className="object-cover opacity-70"
@@ -32,7 +32,7 @@ export default function Hero() {
       </div>
       <div className="container relative z-10 px-6 py-16 md:py-24 flex flex-col mx-auto items-center text-center text-primary-foreground">
         <Reveal className="space-y-6 max-w-4xl">
-          <span className="inline-block font-serif text-primary-foreground text-lg">
+          <span className="inline-block font-semibold text-secondary-foreground bg-secondary/50 backdrop-blur-md px-3 py-1 rounded-full border border-secondary text-sm ">
             The HeirMark Framework
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-primary-foreground leading-[1.1]">
