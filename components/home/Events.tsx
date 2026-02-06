@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import { ArrowRight, Calendar, Mic, Users } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,17 +7,16 @@ const events = [
   {
     label: "Workshop",
     title: "Healing Through Story",
+    description:
+      "A transformative workshop where participants explore personal and ancestral narratives to foster healing and connection.",
+    location: "New York, NY",
+    date: "October 15, 2026",
+    time: "10:00 AM - 4:00 PM",
+    bookingProcess:
+      "Register online to secure your spot. Limited seats available.",
+    bookingPrice: 100,
+    photo: "/workshop.png",
     icon: Users,
-  },
-  {
-    label: "Gathering",
-    title: "Community Storytelling Circle",
-    icon: Mic,
-  },
-  {
-    label: "Session",
-    title: "Generational Wisdom Activation",
-    icon: Calendar,
   },
 ];
 
@@ -27,15 +26,6 @@ export default function Events() {
       id="events"
       className="py-24 bg-primary text-primary-foreground relative overflow-hidden"
     >
-      <div className="absolute inset-0">
-        <Image
-          src="/conf.png"
-          alt="HeirMark gatherings"
-          fill
-          className="object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-primary/50" />
-      </div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <Reveal className="space-y-4 max-w-xl">
@@ -65,18 +55,29 @@ export default function Events() {
               <Reveal
                 key={event.title}
                 delay={index * 0.1}
-                className="bg-white/10 backdrop-blur-md border border-white/15 p-8 rounded-2xl transition-colors"
+                className="bg-white/10 backdrop-blur-md border relative border-white/15 rounded-2xl transition-colors"
               >
-                <div className="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
-                  <Icon className="h-6 w-6 text-white" />
+                <Image
+                  src={event.photo}
+                  alt={event.title}
+                  fill
+                  className="object-cover absolute inset-0 z-0 rounded-2xl "
+                />
+                <div className="relative z-10 flex flex-col items-start bg-linear-to-l via-primary/80 from-primary/10 to-primary p-8  rounded-2xl h-full">
+                  <div className="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2 block">
+                    {event.location}
+                  </span>
+                  <h3 className="text-xl font-serif font-bold text-white mb-2">
+                    {event.title}
+                  </h3>
+                  <p className="text-white/60 text-sm">{event.date}</p>
+                  <button className="font-semibold text-primary-foreground underline mt-4 cursor-pointer">
+                    View more details
+                  </button>
                 </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2 block">
-                  {event.label}
-                </span>
-                <h3 className="text-xl font-serif font-bold text-white mb-2">
-                  {event.title}
-                </h3>
-                <p className="text-white/60 text-sm">Coming Soon</p>
               </Reveal>
             );
           })}
