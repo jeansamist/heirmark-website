@@ -60,8 +60,8 @@ export default function Collection() {
           </p>
         </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <Reveal className="relative">
+        <div className="space-y-12 mb-16">
+          {/* <Reveal className="relative">
             <div className="absolute inset-0 bottom-1/4 bg-background rounded-4xl translate-y-1/4" />
             <Image
               alt="HeirMark Book Collection"
@@ -76,77 +76,76 @@ export default function Collection() {
                 are not sold separately.”
               </p>
             </div>
-          </Reveal>
+          </Reveal> */}
           <div className="space-y-6">
             {bookDetails.map((book, index) => (
               <Reveal
                 key={book.title}
                 delay={index * 0.1}
-                className="bg-white p-6 rounded-xl border border-border/60"
+                className="bg-white p-6 rounded-xl border border-border/60 flex flex-col md:flex-row items-center max-w-4xl mx-auto w-full gap-6"
               >
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-secondary">
-                    {book.label}
-                  </span>
+                <Image
+                  src={book.image}
+                  alt={book.title}
+                  width={200}
+                  height={200}
+                  className="w-full max-w-50 object-contain rounded-lg"
+                />
+                <div className="md:flex-1">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-secondary">
+                      {book.label}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-primary mb-2">
+                    {book.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 text-sm">
+                    {book.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {book.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-center gap-2 text-sm text-foreground/80"
+                      >
+                        <Star className="h-3 w-3 text-secondary" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl font-serif font-bold text-primary mb-2">
-                  {book.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 text-sm">
-                  {book.description}
-                </p>
-                <ul className="space-y-2">
-                  {book.points.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-center gap-2 text-sm text-foreground/80"
-                    >
-                      <Star className="h-3 w-3 text-secondary" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             ))}
           </div>
         </div>
 
-        <div className="text-center">
-          <button className="inline-flex items-center justify-center gap-2 font-semibold border border-secondary/40 min-h-12 rounded-full px-10 h-14 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground transition">
-            Pre-order the complete HeirMark Collection
-            <ArrowRight className="h-4 w-4" />
-          </button>
-          <p className="mt-4 text-sm text-muted-foreground">
-            Available exclusively as a full 3-book bundle.
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 mt-20">
-        <div className="grid md:grid-cols-3 gap-10">
-          {bookDetails.map((book, index) => (
-            <Reveal
-              key={`${book.title}-image`}
-              delay={0.15 * index}
-              className="rounded-2xl border border-border/60 bg-white/80 p-6 flex flex-col items-center gap-4"
-            >
-              <Image
-                src={book.image}
-                alt={book.title}
-                width={420}
-                height={420}
-                className="w-full max-w-xs object-contain"
-              />
-              <div className="text-center space-y-2">
-                <p className="text-xs uppercase tracking-wider text-secondary font-bold">
-                  {book.label}
-                </p>
-                <p className="font-serif text-lg text-foreground">
-                  {book.title}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="text-center space-y-12">
+          <Reveal className="relative max-w-lg mx-auto">
+            <div className="absolute inset-0 bottom-1/4 bg-background rounded-4xl translate-y-1/4" />
+            <Image
+              alt="HeirMark Book Collection"
+              src="/books.png"
+              width={900}
+              height={700}
+              className="relative w-full object-contain rounded-4xl"
+            />
+            <div className="absolute -bottom-6 right-1/2 translate-x-1/2 bg-secondary/80 backdrop-blur-md p-4 rounded-xl max-w-xs hidden md:block border border-border">
+              <p className="text-sm font-bold text-secondary-foreground">
+                “To preserve the integrity of the framework, individual books
+                are not sold separately.”
+              </p>
+            </div>
+          </Reveal>
+          <div>
+            <button className="inline-flex items-center justify-center gap-2 font-semibold border border-secondary/40 min-h-12 rounded-full px-10 h-14 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground transition">
+              Pre-order the complete HeirMark Collection
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <p className="mt-4 font-semibold text-secondary">
+              Available exclusively as a full 3-book bundle.
+            </p>
+          </div>
         </div>
       </div>
     </section>
