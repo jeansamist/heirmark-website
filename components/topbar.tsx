@@ -18,6 +18,7 @@ export function Topbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
 
@@ -51,12 +52,21 @@ export function Topbar() {
   }, [isHomePage]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     const heroSection = document.getElementById("top");
-    // if (!heroSection || !isHomePage ) {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsPastHero(true);
-    return;
-    // }
+    if (!heroSection || !isHomePage || isMobile) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsPastHero(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -65,9 +75,9 @@ export function Topbar() {
       { rootMargin: "-80px 0px 0px 0px", threshold: 0 }
     );
 
-    // observer.observe(heroSection);
+    observer.observe(heroSection);
     return () => observer.disconnect();
-  }, [isHomePage]);
+  }, [isHomePage, isMobile]);
 
   return (
     <nav
