@@ -1,7 +1,10 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
-import { ArrowRight, Users } from "lucide-react";
+import { ArrowRight, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 const events = [
   {
@@ -21,6 +24,23 @@ const events = [
 ];
 
 export default function Events() {
+  const [activeEventTitle, setActiveEventTitle] = useState<string | null>(null);
+  const activeEvent = useMemo(
+    () => events.find((event) => event.title === activeEventTitle) ?? null,
+    [activeEventTitle]
+  );
+
+  useEffect(() => {
+    if (!activeEvent) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveEventTitle(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeEvent]);
+
   return (
     <section
       id="events"
@@ -74,7 +94,11 @@ export default function Events() {
                     {event.title}
                   </h3>
                   <p className="text-white/60 text-sm">{event.date}</p>
-                  <button className="font-semibold text-primary-foreground underline mt-4 cursor-pointer">
+                  <button
+                    type="button"
+                    onClick={() => setActiveEventTitle(event.title)}
+                    className="font-semibold text-primary-foreground underline mt-4 cursor-pointer"
+                  >
                     View more details
                   </button>
                 </div>
@@ -83,6 +107,112 @@ export default function Events() {
           })}
         </div>
       </div>
+      {activeEvent ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-6 py-10"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="event-details-title"
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            aria-label="Close event details"
+            onClick={() => setActiveEventTitle(null)}
+          />
+          <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-primary text-primary-foreground shadow-2xl">
+            <div className="flex items-start justify-between gap-6 border-b border-white/10 px-6 py-5">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                  {activeEvent.label}
+                </span>
+                <h3
+                  id="event-details-title"
+                  className="mt-2 text-2xl font-serif text-white"
+                >
+                  {activeEvent.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveEventTitle(null)}
+                className="rounded-full border border-white/20 p-2 text-white/70 transition hover:text-white"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="grid gap-8 px-6 py-6 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="space-y-6">
+                <div className="relative w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="relative aspect-[16/4] w-full">
+                    <Image
+                      src={activeEvent.photo}
+                      alt={activeEvent.title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                <p className="text-base text-white/75">
+                  {activeEvent.description}
+                </p>
+                <div className="grid gap-4 text-sm text-white/70 sm:grid-cols-2">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                      Location
+                    </p>
+                    <p className="mt-1 text-base text-white">
+                      {activeEvent.location}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                      Date
+                    </p>
+                    <p className="mt-1 text-base text-white">
+                      {activeEvent.date}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                      Time
+                    </p>
+                    <p className="mt-1 text-base text-white">
+                      {activeEvent.time}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                      Price
+                    </p>
+                    <p className="mt-1 text-base text-white">
+                      ${activeEvent.bookingPrice}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex h-full flex-col justify-between gap-6">
+                <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                    Booking Process
+                  </p>
+                  <p className="text-sm text-white/70">
+                    {activeEvent.bookingProcess}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-white/90"
+                >
+                  Book now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
