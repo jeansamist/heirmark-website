@@ -128,7 +128,7 @@ export default function AboutPage() {
                 alt="Dr. Muria Nisbett"
                 width={920}
                 height={1080}
-                className="h-[520px] w-full rounded-[22px] object-cover"
+                className=" aspect-150/200 w-full rounded-[22px] object-cover"
                 priority
               />
             </div>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-muted-foreground">
+              <p className="mt-6 text-lg font-semibold text-foreground">
                 Dr Nisbett has spent her career supporting:
               </p>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -254,15 +254,7 @@ export default function AboutPage() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="relative">
-            <Image
-              src="/founder.jpeg"
-              alt="Dr. Muria Nisbett speaking"
-              width={900}
-              height={1000}
-              className="rounded-[28px] object-cover h-[520px] w-full border border-border"
-            />
-          </Reveal>
+          {/* <Reveal delay={0.1} className="relative"></Reveal> */}
         </div>
       </section>
 
@@ -310,10 +302,7 @@ export default function AboutPage() {
               </h3>
               <div className="mt-5 grid gap-3 text-sm text-muted-foreground">
                 {whoBooks.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-border bg-background/80 px-4 py-3"
-                  >
+                  <div key={item} className="">
                     {item}
                   </div>
                 ))}

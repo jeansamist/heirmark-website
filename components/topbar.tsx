@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,6 +20,8 @@ export function Topbar() {
   const [isPastHero, setIsPastHero] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
+
+  const isHomePage = useMemo(() => pathname === "/", [pathname]);
 
   const isActiveLink = (href: string) => {
     if (href === "/") {
@@ -46,11 +48,11 @@ export function Topbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
     const heroSection = document.getElementById("top");
-    if (!heroSection) {
+    if (!heroSection || !isHomePage) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsPastHero(true);
       return;
@@ -65,7 +67,7 @@ export function Topbar() {
 
     observer.observe(heroSection);
     return () => observer.disconnect();
-  }, []);
+  }, [isHomePage]);
 
   return (
     <nav

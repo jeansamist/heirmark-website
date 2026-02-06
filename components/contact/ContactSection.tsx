@@ -9,7 +9,7 @@ type ContactSectionProps = {
 };
 
 const defaultDescription =
-  "Whether you have a question, an idea, or a desire to bring HeirMark into your home, school, or community, we’d love to hear from you.";
+  "Have a question about HeirMark or want to learn more about the framework?";
 
 export default function ContactSection({
   id = "contact",
@@ -27,9 +27,6 @@ export default function ContactSection({
           <h2 className="text-3xl md:text-5xl font-serif">{subtitle}</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             {description}
-          </p>
-          <p className="text-lg font-semibold text-foreground">
-            Every message is received with care.
           </p>
         </Reveal>
         <Reveal delay={0.1}>

@@ -41,12 +41,19 @@ export default function Footer() {
       <Image
         src="/icon-white.png"
         alt="HeirMark Logo"
-        className="absolute top-0 left-0 opacity-5 pointer-events-none -translate-x-1/2 translate-y-1/3"
+        className="absolute top-0 right-0 opacity-5 pointer-events-none translate-x-1/2 translate-y-1/3"
         width={800}
         height={800}
       />
       <div className="container mx-auto px-6 mb-16">
         <Reveal className="bg-secondary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-secondary/40">
+          <Image
+            src="/leefs.png"
+            alt="HeirMark heritage pattern"
+            width={1920}
+            height={1080 / 2}
+            className="pointer-events-none absolute right-0 z-0 w-full bottom-0 hidden object-contain md:block"
+          />
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl md:text-5xl font-serif text-white">
               Turn Healing into Heritage, Conversations into Keepsakes, and

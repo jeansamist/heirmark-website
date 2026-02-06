@@ -92,19 +92,6 @@ export default function HeirmarkFrameworkPage() {
                 individuals, families, and communities transform lived
                 experience into legacy.
               </p>
-              <div className="flex flex-wrap gap-2 py-4 text-sm">
-                {legacyLines.map((item, i) => (
-                  <span
-                    key={item}
-                    className="text-lg font-semibold text-secondary flex items-center gap-2"
-                  >
-                    {i !== 0 && (
-                      <span className="w-1 h-1 rounded-full bg-secondary" />
-                    )}
-                    {item}
-                  </span>
-                ))}
-              </div>
             </div>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -140,22 +127,6 @@ export default function HeirmarkFrameworkPage() {
 
       <section className="py-20 md:py-28 bg-white/80">
         <div className="container mx-auto px-6 grid gap-10 lg:grid-cols-[1fr_1.1fr] items-center">
-          <Reveal className="space-y-6">
-            <h2 className="text-3xl md:text-5xl font-serif">
-              Rooted in story, memory, prayer, laughter, and land.
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              In Caribbean culture, wisdom lives in story, memory, prayer,
-              laughter, food, music, land, sea, and family. For generations, our
-              ancestors passed knowledge through oral tradition, communal
-              living, yard conversations, church gatherings, and shared care.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              HeirMark honours this heritage by creating intentional space to
-              heal, reflect, document memory, and preserve wisdom, so what we
-              carry is not lost, but protected and passed forward.
-            </p>
-          </Reveal>
           <Reveal delay={0.1} className="relative grid gap-6">
             <Image
               src="/framework-heritage.jpg"
@@ -174,6 +145,22 @@ export default function HeirmarkFrameworkPage() {
                 </div>
               ))}
             </div>
+          </Reveal>
+          <Reveal className="space-y-6">
+            <h2 className="text-3xl md:text-5xl font-serif">
+              Rooted in story, memory, prayer, laughter, and land.
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              In Caribbean culture, wisdom lives in story, memory, prayer,
+              laughter, food, music, land, sea, and family. For generations, our
+              ancestors passed knowledge through oral tradition, communal
+              living, yard conversations, church gatherings, and shared care.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              HeirMark honours this heritage by creating intentional space to
+              heal, reflect, document memory, and preserve wisdom, so what we
+              carry is not lost, but protected and passed forward.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -398,7 +385,7 @@ export default function HeirmarkFrameworkPage() {
         </div>
       </section>
 
-      <ContactSection />
+      <ContactSection description="Have a question about HeirMark or want to learn more about the framework?" />
       <Footer />
     </main>
   );

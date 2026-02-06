@@ -44,7 +44,7 @@ export default function ContactForm() {
           Your Message
           <textarea
             required
-            className="min-h-[140px] rounded-2xl border border-border bg-white px-4 py-3 text-base font-normal text-foreground outline-none transition focus:ring-2 focus:ring-primary/30"
+            className="min-h-35 rounded-2xl border border-border bg-white px-4 py-3 text-base font-normal text-foreground outline-none transition focus:ring-2 focus:ring-primary/30"
             placeholder="Tell us what's on your mind."
           />
         </label>
