@@ -1,5 +1,6 @@
 "use client";
 
+import { BookingModalTrigger, useBookingModal } from "@/components/booking/BookingModal";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +22,7 @@ export function Topbar() {
   const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
+  const { open } = useBookingModal();
 
   const isHomePage = useMemo(() => pathname === "/", [pathname]);
 
@@ -122,12 +124,9 @@ export function Topbar() {
               </li>
             ))}
             <li>
-              <Link
-                href="/about#booking"
-                className="h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition whitespace-nowrap"
-              >
+              <BookingModalTrigger className="h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition whitespace-nowrap">
                 Book DR. Nisbett
-              </Link>
+              </BookingModalTrigger>
             </li>
           </ul>
         </div>
@@ -170,13 +169,16 @@ export function Topbar() {
               </li>
             ))}
             <li className="pt-2">
-              <Link
-                href="/about#booking"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  open();
+                }}
                 className="w-full h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
               >
                 Book DR. Nisbett
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

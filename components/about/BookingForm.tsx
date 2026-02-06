@@ -6,10 +6,7 @@ export default function BookingForm() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      id="booking"
-      className="rounded-[28px] border border-border bg-white/90 p-8 md:p-10"
-    >
+    <div className="space-y-6">
       <div className="space-y-3">
         <h3 className="text-2xl md:text-3xl font-serif">
           Book Dr Muria Nisbett
@@ -20,7 +17,7 @@ export default function BookingForm() {
         </p>
       </div>
       <form
-        className="mt-8 grid gap-5"
+        className="grid gap-5"
         onSubmit={(event) => {
           event.preventDefault();
           setIsOpen(true);
@@ -129,7 +126,7 @@ export default function BookingForm() {
       </form>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 px-4">
           <div className="w-full max-w-md rounded-[28px] bg-white p-8 text-center border border-border">
             <h4 className="text-2xl font-serif text-foreground">
               Your request has been received.

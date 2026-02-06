@@ -1,4 +1,4 @@
-import BookingForm from "@/components/about/BookingForm";
+import { BookingModalTrigger } from "@/components/booking/BookingModal";
 import Footer from "@/components/home/Footer";
 import Reveal from "@/components/Reveal";
 import { ArrowRight } from "lucide-react";
@@ -106,13 +106,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="#booking"
-                className="h-12 px-6 rounded-full bg-primary text-primary-foreground font-semibold flex items-center gap-2 hover:bg-primary/90 transition"
-              >
+              <BookingModalTrigger className="h-12 px-6 rounded-full bg-primary text-primary-foreground font-semibold flex items-center gap-2 hover:bg-primary/90 transition">
                 Book Dr Muria Nisbett
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </BookingModalTrigger>
               <Link
                 href="/heirmark-framework"
                 className="h-12 px-6 rounded-full border border-primary/30 text-primary font-semibold flex items-center hover:bg-primary/5 transition"
@@ -314,35 +311,11 @@ export default function AboutPage() {
                 connection, and legacy-building rooted in cultural wisdom and
                 lived experience.
               </p>
-              <Link
-                href="#booking"
-                className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition"
-              >
+              <BookingModalTrigger className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition">
                 Book Dr Muria Nisbett
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              </BookingModalTrigger>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="booking" className="py-20 md:py-28 bg-white/80">
-        <div className="container mx-auto px-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
-          <Reveal className="space-y-6">
-            <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-              Booking Form
-            </p>
-            <h2 className="text-3xl md:text-5xl font-serif">
-              Share your vision and event details.
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Complete the form to start a booking request. The HeirMark team
-              will follow up to confirm availability and the next steps for your
-              event.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <BookingForm />
           </Reveal>
         </div>
       </section>

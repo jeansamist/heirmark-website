@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import { BookingModalTrigger } from "@/components/booking/BookingModal";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -47,12 +48,9 @@ export default function Founder() {
               a powerful tool for personal transformation and collective growth.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Link
-                href="/book-dr-nisbett"
-                className="inline-flex items-center justify-center border border-primary/30 min-h-10 px-5 py-2 bg-primary text-white hover:bg-primary/90 rounded-full transition"
-              >
+              <BookingModalTrigger className="inline-flex items-center justify-center border border-primary/30 min-h-10 px-5 py-2 bg-primary text-white hover:bg-primary/90 rounded-full transition">
                 Book Dr Nisbett
-              </Link>
+              </BookingModalTrigger>
               <Link
                 href="/about"
                 className="inline-flex items-center justify-center border border-primary/30 min-h-10 px-5 py-2 text-primary hover:bg-primary/5 rounded-full transition"

@@ -1,3 +1,4 @@
+import { BookingModalProvider } from "@/components/booking/BookingModal";
 import { Topbar } from "@/components/topbar";
 import type { Metadata } from "next";
 import { Abril_Fatface, DM_Sans } from "next/font/google";
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontSerif.variable} antialiased font-sans`}
       >
-        <Topbar />
-        {children}
+        <BookingModalProvider>
+          <Topbar />
+          {children}
+        </BookingModalProvider>
       </body>
     </html>
   );

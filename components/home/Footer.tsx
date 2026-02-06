@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import { BookingModalTrigger } from "@/components/booking/BookingModal";
 import {
   ArrowRight,
   Facebook,
@@ -144,13 +145,10 @@ export default function Footer() {
             <p className="text-xs text-white/50 mb-2">
               Keynotes • Community Talks • Special Engagements
             </p>
-            <Link
-              href="/booking"
-              className="text-secondary text-sm font-bold inline-flex items-center hover:underline"
-            >
+            <BookingModalTrigger className="text-secondary text-sm font-bold inline-flex items-center hover:underline">
               Request a Booking
               <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
+            </BookingModalTrigger>
           </div>
         </div>
 
