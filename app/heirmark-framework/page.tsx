@@ -92,6 +92,19 @@ export default function HeirmarkFrameworkPage() {
                 individuals, families, and communities transform lived
                 experience into legacy.
               </p>
+              <div className="flex flex-wrap gap-2 py-4 text-sm">
+                {legacyLines.map((item, i) => (
+                  <span
+                    key={item}
+                    className="text-lg font-semibold text-secondary flex items-center gap-2"
+                  >
+                    {i !== 0 && (
+                      <span className="w-1 h-1 rounded-full bg-secondary" />
+                    )}
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -107,13 +120,6 @@ export default function HeirmarkFrameworkPage() {
               >
                 Explore the Three Pillars
               </Link>
-            </div>
-            <div className="grid gap-3 text-foreground/80">
-              {legacyLines.map((line) => (
-                <p key={line} className="text-lg font-medium">
-                  {line}
-                </p>
-              ))}
             </div>
           </Reveal>
           <Reveal delay={0.1} className="relative">
@@ -249,6 +255,11 @@ export default function HeirmarkFrameworkPage() {
               without their stories recorded, or families scatter without shared
               memory, pieces of identity are lost.
             </p>
+            <div className="grid gap-2 text-lg font-semibold text-foreground">
+              <span>Healing becomes cultural preservation.</span>
+              <span>Memory becomes power.</span>
+              <span>Legacy becomes protection.</span>
+            </div>
             <div className="grid gap-4 text-muted-foreground">
               <p>HeirMark responds by:</p>
               <div className="grid sm:grid-cols-2 gap-3">
@@ -260,17 +271,12 @@ export default function HeirmarkFrameworkPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl bg-white/70 border border-border px-4 py-3"
+                    className="rounded-2xl bg-secondary/70 border border-border px-4 py-3"
                   >
                     {item}
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="grid gap-2 text-lg font-semibold text-foreground">
-              <span>Healing becomes cultural preservation.</span>
-              <span>Memory becomes power.</span>
-              <span>Legacy becomes protection.</span>
             </div>
           </Reveal>
           <Reveal delay={0.1} className="relative">
@@ -310,20 +316,20 @@ export default function HeirmarkFrameworkPage() {
               meets people where they are, in homes, schools, churches,
               community centers, and cultural spaces.
             </p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {whoHeirmarkServes.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-border bg-white/70 px-4 py-3 text-sm text-muted-foreground"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
             <div className="pt-2 text-lg font-semibold text-foreground">
               <p>Every story matters.</p>
               <p>Every voice carries wisdom.</p>
               <p>Every generation deserves access to its roots.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {whoHeirmarkServes.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-border bg-secondary/70 px-4 py-3 text-sm text-foreground"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
