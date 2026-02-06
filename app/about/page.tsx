@@ -1,6 +1,6 @@
 import BookingForm from "@/components/about/BookingForm";
-import Reveal from "@/components/Reveal";
 import Footer from "@/components/home/Footer";
+import Reveal from "@/components/Reveal";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -169,9 +169,9 @@ export default function AboutPage() {
               Dr Nisbett believes that healing becomes most powerful when it is
               shared, documented, and passed across generations. Her approach
               honours lived experience, cultural memory, and emotional truth,
-              helping people not only heal but leave something meaningful behind.
-              Through HeirMark, she invites communities to slow down, reflect,
-              speak truth, and preserve what matters most.
+              helping people not only heal but leave something meaningful
+              behind. Through HeirMark, she invites communities to slow down,
+              reflect, speak truth, and preserve what matters most.
             </p>
           </Reveal>
           <Reveal delay={0.1} className="grid gap-6">
@@ -179,11 +179,11 @@ export default function AboutPage() {
               <h3 className="text-2xl font-serif font-bold">
                 Professional Background
               </h3>
-              <div className="mt-4 grid gap-3 text-muted-foreground">
+              <div className="mt-4 grid gap-3 text-foreground">
                 {backgroundAreas.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-border bg-white/70 px-4 py-3"
+                    className="rounded-2xl  bg-white/70 px-4 py-3"
                   >
                     {item}
                   </div>
@@ -196,7 +196,7 @@ export default function AboutPage() {
                 {supportsGroups.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-border bg-white/70 px-4 py-3 text-sm text-muted-foreground"
+                    className="rounded-2xl bg-white/70 px-4 py-3 text-foreground"
                   >
                     {item}
                   </div>
@@ -229,7 +229,7 @@ export default function AboutPage() {
               {beyondFocus.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-border bg-white/70 px-4 py-3"
+                  className="rounded-2xl border border-border bg-secondary/70 px-4 py-3"
                 >
                   {item}
                 </div>
@@ -243,7 +243,7 @@ export default function AboutPage() {
                 {groundedIn.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-muted-foreground"
+                    className="rounded-2xl border border-border bg-secondary/80 px-4 py-3 text-sm text-muted-foreground"
                   >
                     {item}
                   </div>
@@ -293,7 +293,7 @@ export default function AboutPage() {
                     {group.items.map((item) => (
                       <div
                         key={item}
-                        className="rounded-2xl border border-border bg-background/80 px-4 py-3"
+                        className="rounded-2xl border border-border bg-secondary text-foreground px-4 py-3"
                       >
                         {item}
                       </div>

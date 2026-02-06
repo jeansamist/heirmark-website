@@ -6,9 +6,14 @@ export default function BookingForm() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="rounded-[28px] border border-border bg-white/90 p-8 md:p-10">
+    <div
+      id="booking"
+      className="rounded-[28px] border border-border bg-white/90 p-8 md:p-10"
+    >
       <div className="space-y-3">
-        <h3 className="text-2xl md:text-3xl font-serif">Book Dr Muria Nisbett</h3>
+        <h3 className="text-2xl md:text-3xl font-serif">
+          Book Dr Muria Nisbett
+        </h3>
         <p className="text-muted-foreground">
           Invite Dr Muria Nisbett to speak, facilitate, or lead a healing
           experience for your community or organization.

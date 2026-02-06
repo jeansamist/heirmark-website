@@ -9,9 +9,9 @@ import { useEffect, useRef, useState } from "react";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/heirmark-framework", label: "Heirmark Framework" },
-  { href: "/collection", label: "Heirmark Collection" },
-  { href: "/events", label: "Events" },
-  { href: "/#contact", label: "Contact Us" },
+  { href: "/#collection", label: "Heirmark Collection" },
+  { href: "/#events", label: "Events" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export function Topbar() {
@@ -111,7 +111,7 @@ export function Topbar() {
             ))}
             <li>
               <Link
-                href="/book"
+                href="/about#booking"
                 className="h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition whitespace-nowrap"
               >
                 Book DR. Nisbett
@@ -159,7 +159,7 @@ export function Topbar() {
             ))}
             <li className="pt-2">
               <Link
-                href="/book"
+                href="/about#booking"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
               >
