@@ -2,6 +2,7 @@ import { BookingModalProvider } from "@/components/booking/BookingModal";
 import { Topbar } from "@/components/topbar";
 import type { Metadata } from "next";
 import { Abril_Fatface, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const fontSans = DM_Sans({
@@ -42,6 +43,16 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontSerif.variable} antialiased font-sans`}
       >
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TSGDN2K53H"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-gtag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TSGDN2K53H');`}
+        </Script>
         <BookingModalProvider>
           <Topbar />
           {children}
