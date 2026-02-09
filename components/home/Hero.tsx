@@ -58,7 +58,7 @@ export default function Hero() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
-              href="/heirmark-framework"
+              href="/framework"
               className="inline-flex items-center justify-center gap-2 font-semibold min-h-12 rounded-full px-6 h-14 text-base bg-primary-foreground hover:bg-primary-foreground/90 text-primary transition"
             >
               Explore the Framework

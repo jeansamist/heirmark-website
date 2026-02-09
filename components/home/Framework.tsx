@@ -69,7 +69,7 @@ export default function Framework() {
               </p>
             </div>
             <Link
-              href="/heirmark-framework"
+              href="/framework"
               className="inline-flex items-center gap-2 text-primary text-lg font-medium hover:underline underline-offset-4"
             >
               Learn More About The Framework

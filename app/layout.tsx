@@ -16,9 +16,21 @@ const fontSerif = Abril_Fatface({
 });
 
 export const metadata: Metadata = {
-  title: "HEIRMARK - Transforming Family Stories & Experiences Into Legacy",
+  metadataBase: new URL("https://heirmark.com"),
+  title: {
+    default: "HeirMark",
+    template: "%s | HeirMark",
+  },
   description:
     "A Caribbean-rooted healing framework helping families and communities strengthen identity, restore connection, and preserve generational wisdom.",
+  openGraph: {
+    type: "website",
+    siteName: "HeirMark",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 export default function RootLayout({
   children,

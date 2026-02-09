@@ -1,27 +1,15 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import { events } from "@/data/events";
 import { ArrowRight, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-const events = [
-  {
-    label: "Workshop",
-    title: "Healing Through Story",
-    description:
-      "A transformative workshop where participants explore personal and ancestral narratives to foster healing and connection.",
-    location: "New York, NY",
-    date: "October 15, 2026",
-    time: "10:00 AM - 4:00 PM",
-    bookingProcess:
-      "Register online to secure your spot. Limited seats available.",
-    bookingPrice: 100,
-    photo: "/workshop.png",
-    icon: Users,
-  },
-];
+const iconMap = {
+  workshop: Users,
+};
 
 export default function Events() {
   const [activeEventTitle, setActiveEventTitle] = useState<string | null>(null);
@@ -70,7 +58,7 @@ export default function Events() {
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {events.map((event, index) => {
-            const Icon = event.icon;
+            const Icon = iconMap[event.label.toLowerCase()] ?? Users;
             return (
               <Reveal
                 key={event.title}

@@ -1,6 +1,9 @@
 "use client";
 
-import { BookingModalTrigger, useBookingModal } from "@/components/booking/BookingModal";
+import {
+  BookingModalTrigger,
+  useBookingModal,
+} from "@/components/booking/BookingModal";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,9 +12,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/heirmark-framework", label: "Heirmark Framework" },
-  { href: "/#collection", label: "Heirmark Collection" },
-  { href: "/#events", label: "Events" },
+  { href: "/framework", label: "Heirmark Framework" },
+  { href: "/collection", label: "Heirmark Collection" },
+  { href: "/events", label: "Events" },
   { href: "/contact", label: "Contact Us" },
 ];
 
@@ -45,7 +48,8 @@ export function Topbar() {
       const isScrollingDown = currentScrollY > lastScrollY.current;
       const shouldHide = isScrollingDown && currentScrollY > 120;
 
-      setIsHidden(shouldHide);
+      // setIsHidden(shouldHide);
+      setIsHidden(false);
       lastScrollY.current = currentScrollY;
     };
 

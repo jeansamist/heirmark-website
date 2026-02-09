@@ -12,25 +12,40 @@ import Link from "next/link";
 
 const footerLinks = {
   explore: [
-    { href: "/heirmark-framework", label: "The HeirMark Framework" },
-    { href: "/three-pillars", label: "The Three Pillars" },
-    { href: "/book-collection", label: "The Book Collection" },
+    { href: "/framework", label: "The HeirMark Framework" },
+    { href: "/collection", label: "The Book Collection" },
     { href: "/events", label: "Events" },
     { href: "/about", label: "About HeirMark" },
+    { href: "/book", label: "Book Dr. Nisbett" },
   ],
   work: [
-    { href: "/partnerships", label: "Partnerships" },
-    { href: "/schools", label: "Schools & Organizations" },
-    { href: "/resources", label: "Resources" },
     { href: "/contact", label: "Contact" },
+    { href: "/events", label: "Event Registration" },
+    { href: "/collection", label: "Pre-Order Collection" },
   ],
 };
 
 const socials = [
-  { href: "#", label: "Instagram", icon: Instagram },
-  { href: "#", label: "LinkedIn", icon: Linkedin },
-  { href: "#", label: "YouTube", icon: Youtube },
-  { href: "#", label: "Facebook", icon: Facebook },
+  {
+    href: "https://www.instagram.com/HEIRMARK",
+    label: "Instagram",
+    icon: Instagram,
+  },
+  {
+    href: "https://www.linkedin.com/company/HEIRMARK",
+    label: "LinkedIn",
+    icon: Linkedin,
+  },
+  {
+    href: "https://www.youtube.com/@HEIRMARK",
+    label: "YouTube",
+    icon: Youtube,
+  },
+  {
+    href: "https://www.facebook.com/HEIRMARK",
+    label: "Facebook",
+    icon: Facebook,
+  },
 ];
 
 export default function Footer() {
@@ -62,7 +77,7 @@ export default function Footer() {
             </h2>
             <div className="pt-4">
               <Link
-                href="/pre-order"
+                href="/collection"
                 className="inline-flex items-center gap-2 border border-white/30 min-h-12 bg-white text-secondary text-lg px-8 h-14 rounded-full font-bold hover:bg-white/90 transition"
               >
                 <span className="hidden md:inline">

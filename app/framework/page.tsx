@@ -4,6 +4,36 @@ import Footer from "@/components/home/Footer";
 import { ArrowRight, BookOpen, Heart, Leaf } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The HeirMark Framework",
+  description:
+    "Discover HeirMark's 3-pillar framework - Identity, Connection, and Legacy - rooted in Caribbean wisdom to preserve family stories and strengthen belonging.",
+  alternates: {
+    canonical: "/framework",
+  },
+  openGraph: {
+    title: "The HeirMark Framework",
+    description:
+      "Discover HeirMark's 3-pillar framework - Identity, Connection, and Legacy - rooted in Caribbean wisdom to preserve family stories and strengthen belonging.",
+    url: "/framework",
+    images: [
+      {
+        url: "/framework-hero.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The HeirMark Framework",
+    description:
+      "Discover HeirMark's 3-pillar framework - Identity, Connection, and Legacy - rooted in Caribbean wisdom to preserve family stories and strengthen belonging.",
+    images: ["/framework-hero.jpg"],
+  },
+};
 
 const pillars = [
   {
@@ -66,7 +96,7 @@ const whoHeirmarkServes = [
   "Community organizations",
 ];
 
-export default function HeirmarkFrameworkPage() {
+export default function FrameworkPage() {
   return (
     <main className="bg-background text-foreground">
       <section
@@ -95,7 +125,7 @@ export default function HeirmarkFrameworkPage() {
             </div>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/pre-order"
+                href="/collection"
                 className="h-12 px-6 rounded-full bg-primary text-primary-foreground font-semibold flex items-center gap-2 hover:bg-primary/90 transition"
               >
                 Pre-Order Collection
@@ -375,7 +405,7 @@ export default function HeirmarkFrameworkPage() {
               </p>
             </div>
             <Link
-              href="/pre-order"
+              href="/collection"
               className="h-12 px-6 rounded-full bg-secondary text-foreground font-semibold flex items-center justify-center gap-2 hover:bg-secondary/90 transition"
             >
               Pre-Order

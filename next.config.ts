@@ -11,6 +11,41 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: false,
   },
+  async redirects() {
+    return [
+      {
+        source: "/heirmark-framework",
+        destination: "/framework",
+        permanent: true,
+      },
+      {
+        source: "/dr-nisbett",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/heirmark-collection",
+        destination: "/collection",
+        permanent: true,
+      },
+      {
+        source: "/about-dr-nisbett",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.theheirmarkframework.com",
+          },
+        ],
+        destination: "https://theheirmarkframework.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

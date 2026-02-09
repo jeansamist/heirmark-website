@@ -1,6 +1,7 @@
 import Reveal from "@/components/Reveal";
 import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const bookDetails = [
   {
@@ -138,10 +139,13 @@ export default function Collection() {
             </div>
           </Reveal>
           <div>
-            <button className="inline-flex items-center justify-center gap-2 font-semibold border border-secondary/40 min-h-12 rounded-full px-10 h-14 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground transition">
+            <Link
+              href="/collection"
+              className="inline-flex items-center justify-center gap-2 font-semibold border border-secondary/40 min-h-12 rounded-full px-10 h-14 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground transition"
+            >
               Pre-order the complete HeirMark Collection
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Link>
             <p className="mt-4 font-semibold text-secondary">
               Available exclusively as a full 3-book bundle.
             </p>

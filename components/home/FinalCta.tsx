@@ -17,7 +17,7 @@ export default function FinalCta() {
           </h2>
           <div className="flex items-center justify-center">
             <Link
-              href="/pre-order"
+              href="/collection"
               className="inline-flex items-center gap-2 border border-primary/30 min-h-14 px-8 py-4 text-lg font-semibold rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition"
             >
               Grab My HeirMark Collection
