@@ -33,17 +33,6 @@ const nextConfig: NextConfig = {
         destination: "/about",
         permanent: true,
       },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "www.theheirmarkframework.com",
-          },
-        ],
-        destination: "https://theheirmarkframework.com/:path*",
-        permanent: true,
-      },
     ];
   },
 };
