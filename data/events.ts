@@ -1,6 +1,7 @@
 export type HeirMarkEvent = {
   id: string;
   label: string;
+  kind: "workshop";
   title: string;
   description: string;
   location: string;
@@ -22,6 +23,7 @@ export const events: HeirMarkEvent[] = [
   {
     id: "healing-through-story",
     label: "Workshop",
+    kind: "workshop",
     title: "Healing Through Story",
     description:
       "A transformative workshop where participants explore personal and ancestral narratives to foster healing and connection.",

@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-const iconMap = {
+const iconMap: Record<"workshop", typeof Users> = {
   workshop: Users,
 };
 
@@ -58,7 +58,7 @@ export default function Events() {
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {events.map((event, index) => {
-            const Icon = iconMap[event.label.toLowerCase()] ?? Users;
+            const Icon = iconMap[event.kind];
             return (
               <Reveal
                 key={event.title}
