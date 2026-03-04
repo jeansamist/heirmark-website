@@ -1,9 +1,8 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
-import { ArrowRight, Check, ShieldCheck, Truck, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   useEffect,
   useState,
@@ -41,24 +40,6 @@ const books = [
 ];
 
 const collectionPrice = 75;
-
-const trustPoints = [
-  {
-    title: "Secure payment",
-    description: "Checkout is processed through Stripe.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Single bundle only",
-    description: "All three books arrive as one complete system.",
-    icon: Check,
-  },
-  {
-    title: "Order support",
-    description: "Shipping and confirmation details are sent by email.",
-    icon: Truck,
-  },
-];
 
 const initialFormData: CheckoutFormData = {
   fullName: "",
@@ -194,101 +175,79 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
+      <section className="relative overflow-hidden bg-[linear-gradient(165deg,#0f1f24_0%,#1c4250_55%,#2d5f6e_100%)] pt-28 pb-18 md:pt-36 md:pb-24">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(233,180,76,0.18),transparent_58%)]" />
-          <div className="absolute -right-20 top-16 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
-          <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-secondary/20 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(233,180,76,0.2),transparent_45%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(244,219,169,0.16),transparent_40%)]" />
+          <div className="absolute inset-0 motifs opacity-[0.04]" />
         </div>
-        <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <Reveal className="space-y-7">
-            <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-              Buy The Collection
-            </p>
-            <h1 className="text-4xl md:text-6xl font-serif">
-              The Complete HeirMark 3-Book Legacy Framework
-            </h1>
-            <p className="max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
-              One intentional bundle to help families heal, connect, and
-              preserve wisdom that can be carried forward for generations.
-            </p>
-            <div className="inline-flex items-center rounded-full border border-primary/25 bg-primary/8 px-4 py-2 text-sm font-semibold text-primary">
-              ${collectionPrice} per full collection
-            </div>
-            {wasCanceled && (
-              <div className="max-w-2xl rounded-2xl border border-secondary/40 bg-secondary/15 px-4 py-3 text-sm text-foreground">
-                Your Stripe checkout was canceled. You can continue from here
-                whenever you are ready.
+        <div className="container mx-auto space-y-8 px-3 md:px-6">
+          <Reveal className="mx-auto max-w-5xl rounded-2xl border border-white/15 bg-foreground/85 px-3 py-6 backdrop-blur-sm md:rounded-[34px] md:px-10 md:py-10">
+            <div className="relative">
+              <div className="absolute -top-1 right-0 h-18 w-18 md:-top-2 md:h-30 md:w-30">
+                <div className="absolute inset-0 rounded-full bg-[repeating-conic-gradient(from_0deg,#e9b44c_0deg_22deg,#f4dba9_22deg_44deg,#2d5f6e_44deg_66deg)] animate-[spin_12s_linear_infinite]" />
+                <div className="absolute inset-[6px] rounded-full border border-foreground/20 bg-secondary md:inset-[8px]" />
+                <div className="absolute inset-[6px] flex items-center justify-center rounded-full md:inset-[8px]">
+                  <div className="text-center text-foreground">
+                    <p className="text-[8px] font-semibold uppercase tracking-[0.14em] md:text-[9px] md:tracking-[0.16em]">
+                      Launch
+                    </p>
+                    <p className="mt-0.5 text-xl font-serif leading-none md:mt-1 md:text-2xl">
+                      ${collectionPrice}
+                    </p>
+                  </div>
+                </div>
               </div>
-            )}
-            <div className="flex flex-wrap items-center gap-4">
+              <p className="max-w-2xl text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+                Official Launch Price — ${collectionPrice}
+              </p>
+              <p className="mt-2 max-w-2xl text-sm font-semibold text-white/75">
+                (Limited First Release)
+              </p>
+              <h1 className="mt-4 max-w-3xl text-3xl md:text-5xl font-serif text-white">
+                The HeirMark 3-Book Collection
+              </h1>
+              <p className="mt-4 max-w-3xl text-lg md:mt-5 md:text-xl text-white/90">
+                Turn healing into heritage.
+              </p>
+              <p className="mt-2 max-w-3xl text-sm md:text-lg text-white/75">
+                Strengthen your family&apos;s connection and protect the
+                stories, wisdom, and legacy that deserve to live on.
+              </p>
+
+              {wasCanceled && (
+                <div className="mt-5 max-w-3xl rounded-2xl border border-secondary/60 bg-secondary/20 px-4 py-3 text-sm text-white">
+                  Your Stripe checkout was canceled. You can continue from here
+                  whenever you are ready.
+                </div>
+              )}
+
               <button
                 type="button"
                 onClick={openModal}
-                className="inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-lg font-semibold text-primary-foreground transition hover:bg-primary/90"
+                className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-secondary/80 bg-secondary px-4 text-sm font-semibold text-foreground transition hover:bg-secondary/90 md:h-14 md:px-6 md:text-base"
               >
-                Secure My Collection
+                Secure My Collection Today ${collectionPrice}
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <Link
-                href="/collection"
-                className="inline-flex h-14 items-center rounded-full border border-primary/35 px-8 text-primary font-semibold transition hover:bg-primary/5"
-              >
-                View Collection Details
-              </Link>
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative">
-            <div className="absolute -inset-3 rounded-[32px] border border-primary/10 bg-white/70" />
-            <div className="relative rounded-[32px] border border-border bg-white/90 p-6 shadow-sm md:p-8">
-              <Image
-                src="/books.png"
-                alt="HeirMark 3-book collection"
-                width={920}
-                height={700}
-                className="w-full object-contain"
-                priority
-              />
-              <div className="mt-6 rounded-2xl bg-muted/40 p-5 text-sm text-muted-foreground">
-                <p className="font-semibold text-foreground">
-                  Bundle integrity promise
-                </p>
-                <p className="mt-1">
-                  To preserve the framework, individual books are not sold
-                  separately.
-                </p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="pb-22 md:pb-28">
-        <div className="container mx-auto grid gap-8 px-6 lg:grid-cols-[1fr_0.42fr] lg:items-start">
-          <Reveal className="rounded-[30px] border border-border bg-white/85 p-6 md:p-10">
-            <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-              What&apos;s Included
-            </p>
-            <h2 className="mt-4 text-3xl md:text-5xl font-serif">
-              Three companion books designed as one system.
-            </h2>
-            <p className="mt-4 max-w-3xl text-lg text-muted-foreground leading-relaxed">
-              Each book supports a different stage of your healing and legacy
-              journey. Together, they help you move from reflection to
-              relationship to record.
-            </p>
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <Reveal
+            delay={0.08}
+            className="mx-auto max-w-5xl rounded-2xl border border-white/20 bg-white/10 px-3 py-6 md:rounded-[34px] md:px-8 md:py-8"
+          >
+            <div className="grid gap-5 md:grid-cols-3">
               {books.map((book, index) => (
                 <Reveal
                   key={book.title}
                   delay={index * 0.08}
-                  className="rounded-2xl border border-border bg-background p-5"
+                  className="rounded-2xl border border-white/20 bg-white/95 px-3 py-5 md:rounded-3xl md:px-5"
                 >
-                  <p className="text-xs uppercase tracking-[0.16em] text-primary font-semibold">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
                     {book.subtitle}
                   </p>
-                  <div className="mt-4 rounded-xl bg-white p-4">
+                  <div className="mt-3 rounded-xl border border-border bg-background px-2 py-4 md:rounded-2xl md:px-4">
                     <Image
                       src={book.image}
                       alt={book.title}
@@ -297,61 +256,12 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                       className="mx-auto h-56 w-auto object-contain"
                     />
                   </div>
-                  <h3 className="mt-4 text-lg font-serif text-foreground">
+                  <p className="mt-3 text-sm font-semibold text-foreground">
                     {book.title}
-                  </h3>
+                  </p>
                 </Reveal>
               ))}
             </div>
-          </Reveal>
-
-          <Reveal
-            delay={0.1}
-            className="rounded-[30px] border border-border bg-white/90 p-6 shadow-sm lg:sticky lg:top-26"
-          >
-            <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-              Order Summary
-            </p>
-            <h2 className="mt-3 text-2xl font-serif">HeirMark 3-Book Bundle</h2>
-            <div className="mt-6 rounded-2xl bg-primary/5 p-5">
-              <div className="flex items-baseline justify-between">
-                <span className="text-sm text-muted-foreground">Price</span>
-                <span className="text-3xl font-semibold text-primary">
-                  ${collectionPrice}
-                </span>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Per complete 3-book collection.
-              </p>
-            </div>
-            <div className="mt-6 space-y-4">
-              {trustPoints.map((point) => {
-                const Icon = point.icon;
-                return (
-                  <div key={point.title} className="flex gap-3">
-                    <span className="mt-0.5 rounded-xl bg-muted p-2 text-primary">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">
-                        {point.title}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {point.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <button
-              type="button"
-              onClick={openModal}
-              className="mt-8 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground transition hover:bg-primary/90"
-            >
-              Continue to Checkout
-              <ArrowRight className="h-4 w-4" />
-            </button>
           </Reveal>
         </div>
       </section>
@@ -364,7 +274,7 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
         >
           <div className="mx-auto flex h-full max-w-2xl items-center justify-center">
             <div
-              className="w-full rounded-[30px] border border-border bg-white shadow-2xl"
+              className="w-full rounded-[30px] border border-border bg-background"
               onClick={(event) => event.stopPropagation()}
               role="dialog"
               aria-modal="true"
@@ -378,7 +288,7 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                     </p>
                     <h2
                       id="checkout-modal-title"
-                      className="mt-1 text-xl sm:text-2xl font-serif"
+                      className="mt-1 text-xl sm:text-2xl font-serif text-foreground"
                     >
                       Complete Your HeirMark Order
                     </h2>
@@ -392,7 +302,7 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                     <X className="h-5 w-5" />
                   </button>
                 </div>
-                <div className="mt-4 rounded-2xl bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
+                <div className="mt-4 rounded-2xl border border-secondary/40 bg-secondary/15 px-4 py-3 text-sm text-foreground">
                   <div className="flex items-center justify-between">
                     <span>Bundle price</span>
                     <span className="font-semibold text-foreground">
@@ -414,7 +324,10 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                 noValidate
               >
                 <div className="space-y-2">
-                  <label htmlFor="full-name" className="text-sm font-semibold">
+                  <label
+                    htmlFor="full-name"
+                    className="text-sm font-semibold text-foreground"
+                  >
                     Full Name
                   </label>
                   <input
@@ -431,7 +344,10 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-semibold">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-semibold text-foreground"
+                  >
                     Valid Email Address
                   </label>
                   <input
@@ -448,7 +364,10 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="quantity" className="text-sm font-semibold">
+                  <label
+                    htmlFor="quantity"
+                    className="text-sm font-semibold text-foreground"
+                  >
                     Number of Collections to Purchase
                   </label>
                   <input
@@ -466,7 +385,10 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="address" className="text-sm font-semibold">
+                  <label
+                    htmlFor="address"
+                    className="text-sm font-semibold text-foreground"
+                  >
                     Shipping Address
                   </label>
                   <textarea
