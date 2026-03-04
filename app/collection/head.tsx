@@ -14,10 +14,10 @@ const collectionProduct = {
   image: ["https://heirmark.com/books.png"],
   offers: {
     "@type": "Offer",
-    url: "https://heirmark.com/collection",
+    url: "https://heirmark.com/buy",
     priceCurrency: "USD",
-    availability: "https://schema.org/PreOrder",
-    price: "0.00",
+    availability: "https://schema.org/InStock",
+    price: "75.00",
   },
 };
 

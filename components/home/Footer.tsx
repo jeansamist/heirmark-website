@@ -21,7 +21,7 @@ const footerLinks = {
   work: [
     { href: "/contact", label: "Contact" },
     { href: "/events", label: "Event Registration" },
-    { href: "/collection", label: "Pre-Order Collection" },
+    { href: "/buy", label: "Order Collection" },
   ],
 };
 
@@ -77,7 +77,7 @@ export default function Footer() {
             </h2>
             <div className="pt-4">
               <Link
-                href="/collection"
+                href="/buy"
                 className="inline-flex items-center gap-2 border border-white/30 min-h-12 bg-white text-secondary text-lg px-8 h-14 rounded-full font-bold hover:bg-white/90 transition"
               >
                 <span className="hidden md:inline">

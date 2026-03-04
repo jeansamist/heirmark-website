@@ -140,10 +140,10 @@ export default function Collection() {
           </Reveal>
           <div>
             <Link
-              href="/collection"
+              href="/buy"
               className="inline-flex items-center justify-center gap-2 font-semibold border border-secondary/40 min-h-12 rounded-full px-10 h-14 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground transition"
             >
-              Pre-order the complete HeirMark Collection
+              Secure My Collection Today $75
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-4 font-semibold text-secondary">

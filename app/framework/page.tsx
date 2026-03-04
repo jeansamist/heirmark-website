@@ -125,10 +125,10 @@ export default function FrameworkPage() {
             </div>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/collection"
+                href="/buy"
                 className="h-12 px-6 rounded-full bg-primary text-primary-foreground font-semibold flex items-center gap-2 hover:bg-primary/90 transition"
               >
-                Pre-Order Collection
+                Secure Collection
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -405,10 +405,10 @@ export default function FrameworkPage() {
               </p>
             </div>
             <Link
-              href="/collection"
+              href="/buy"
               className="h-12 px-6 rounded-full bg-secondary text-foreground font-semibold flex items-center justify-center gap-2 hover:bg-secondary/90 transition"
             >
-              Pre-Order
+              Secure Today $75
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
