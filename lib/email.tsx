@@ -67,6 +67,9 @@ export async function sendCollectionOrderConfirmationEmail(
       host: smtpConfig.host,
       port: smtpConfig.port,
       secure: smtpConfig.secure,
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
       auth: {
         user: smtpConfig.user,
         pass: smtpConfig.pass,

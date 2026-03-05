@@ -27,13 +27,6 @@ export async function POST(request: Request) {
     });
   }
 
-  if (process.env.STRIPE_WEBHOOK_SECRET) {
-    return NextResponse.json({
-      status: "skipped",
-      reason: "Webhook flow is configured for email confirmations.",
-    });
-  }
-
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const status = await sendCollectionOrderEmailForSession(stripe, session);
