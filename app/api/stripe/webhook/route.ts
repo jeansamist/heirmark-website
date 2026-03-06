@@ -1,26 +1,8 @@
-import { sendCollectionOrderEmailForSession } from "@/lib/collection-order";
 import { getStripeClient } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 
 export const runtime = "nodejs";
-
-const EMAIL_PROCESS_TIMEOUT_MS = 12000;
-
-function withTimeout<T>(promise: Promise<T>, timeoutMs: number) {
-  return new Promise<T | "timeout">((resolve, reject) => {
-    const timer = setTimeout(() => resolve("timeout"), timeoutMs);
-    promise
-      .then((value) => {
-        clearTimeout(timer);
-        resolve(value);
-      })
-      .catch((error) => {
-        clearTimeout(timer);
-        reject(error);
-      });
-  });
-}
 
 export async function POST(request: Request) {
   const stripe = getStripeClient();
@@ -58,20 +40,7 @@ export async function POST(request: Request) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    void withTimeout(
-      sendCollectionOrderEmailForSession(stripe, session),
-      EMAIL_PROCESS_TIMEOUT_MS
-    )
-      .then((status) => {
-        if (status === "timeout") {
-          console.warn(
-            `Webhook email processing timed out after ${EMAIL_PROCESS_TIMEOUT_MS}ms for session ${session.id}.`
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Webhook email processing failed:", error);
-      });
+    console.info(`Checkout completed for session ${session.id}.`);
   }
 
   return NextResponse.json({ received: true });
