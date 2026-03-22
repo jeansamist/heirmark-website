@@ -87,40 +87,40 @@ export function Topbar() {
 
   return (
     <nav
-      className={`h-20 fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 z-50 w-full transition-transform duration-300 ${
         isHidden ? "-translate-y-full" : "translate-y-0"
       } ${
         isPastHero
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          ? "border-b border-secondary/20 bg-[color:var(--surface)]/95 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className="container h-full mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link href="/" className="shrink-0">
+      <div className="container mx-auto flex h-20 items-center justify-between gap-4 px-4 sm:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
             src="/HEIRMARK-logo.png"
-            alt="heirmark logo"
+            alt="HeirMark logo"
             width={567.4}
             height={102.2}
-            className="w-32 sm:w-40"
             priority
+            className={`h-auto w-34 sm:w-40 ${
+              isPastHero ? "" : "brightness-0 invert"
+            }`}
           />
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`transition font-semibold ${
+                  className={`border-b pb-0.5 text-[11px] font-medium uppercase tracking-[0.18em] ${
                     isActiveLink(link.href)
-                      ? "text-primary"
+                      ? "border-secondary text-primary"
                       : isPastHero
-                      ? "text-foreground/80 hover:text-foreground"
-                      : "text-primary-foreground/80 hover:text-primary-foreground"
+                      ? "border-transparent text-foreground/72 hover:border-secondary/60 hover:text-foreground"
+                      : "border-transparent text-primary-foreground/74 hover:border-primary-foreground/45 hover:text-primary-foreground"
                   }`}
                 >
                   {link.label}
@@ -128,20 +128,19 @@ export function Topbar() {
               </li>
             ))}
             <li>
-              <BookingModalTrigger className="h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition whitespace-nowrap">
+              <BookingModalTrigger className="flex h-11 items-center justify-center border border-primary bg-primary px-5 text-[11px] font-medium uppercase tracking-[0.18em] whitespace-nowrap text-primary-foreground hover:bg-secondary hover:text-primary">
                 Book DR. Nisbett
               </BookingModalTrigger>
             </li>
           </ul>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
-          className={`lg:hidden p-2 rounded-md transition ${
+          className={`border p-2 lg:hidden ${
             isPastHero
-              ? "text-foreground hover:bg-foreground/10"
-              : "text-primary-foreground hover:bg-primary-foreground/10"
+              ? "border-primary/20 text-foreground hover:bg-primary/10"
+              : "border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
           }`}
           aria-label="Toggle menu"
         >
@@ -153,19 +152,18 @@ export function Topbar() {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed top-20 left-0 w-full bg-background/95 backdrop-blur-md border-t border-border shadow-lg">
-          <ul className="container mx-auto px-4 py-6 space-y-4">
+        <div className="fixed left-0 top-20 w-full border-t border-secondary/20 bg-[color:var(--surface)]/95 backdrop-blur-md lg:hidden">
+          <ul className="container mx-auto space-y-4 px-4 py-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block py-2 transition ${
+                  className={`block border-b py-2 text-[11px] uppercase tracking-[0.18em] ${
                     isActiveLink(link.href)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      ? "border-secondary text-primary"
+                      : "border-transparent text-muted-foreground hover:border-secondary/60 hover:text-primary"
                   }`}
                 >
                   {link.label}
@@ -179,7 +177,7 @@ export function Topbar() {
                   setIsMobileMenuOpen(false);
                   open();
                 }}
-                className="w-full h-12 px-6 py-4 flex text-sm items-center justify-center font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
+                className="flex h-12 w-full items-center justify-center border border-primary bg-primary px-6 text-[11px] font-medium uppercase tracking-[0.18em] text-primary-foreground hover:bg-secondary hover:text-primary"
               >
                 Book DR. Nisbett
               </button>

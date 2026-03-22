@@ -1,7 +1,7 @@
 import { BookingModalProvider } from "@/components/booking/BookingModal";
 import { Topbar } from "@/components/topbar";
 import type { Metadata } from "next";
-import { Abril_Fatface, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -10,10 +10,11 @@ const fontSans = DM_Sans({
   subsets: ["latin"],
 });
 
-const fontSerif = Abril_Fatface({
-  variable: "--font-abril-fatface-serif",
+const fontSerif = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond-serif",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
