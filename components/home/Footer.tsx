@@ -61,7 +61,7 @@ export default function Footer() {
         width={800}
         height={800}
       />
-      <div className="container mx-auto px-6 mb-16">
+      {/* <div className="container mx-auto px-6 mb-16">
         <Reveal className="bg-secondary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-secondary/40">
           <Image
             src="/leefs.png"
@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
           </div>
         </Reveal>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-6 grid md:grid-cols-4 gap-12 border-t border-white/10 pt-16">
         <div className="space-y-6">
