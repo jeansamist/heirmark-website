@@ -1,5 +1,6 @@
 import { BookingModalTrigger } from "@/components/booking/BookingModal";
 import Reveal from "@/components/Reveal";
+import Footer from "@/components/home/Footer";
 import { events } from "@/data/events";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -121,33 +122,33 @@ const books = [
 
 const galleryImages = [
   {
-    src: "/workshop.png",
-    alt: "HeirMark workshop session",
-    className: "md:col-span-2",
-  },
-  {
-    src: "/framework-community.webp",
+    src: "/gallery/ACQ00309.jpg",
     alt: "HeirMark community gathering",
-    className: "",
-  },
-  {
-    src: "/founder.jpeg",
-    alt: "Dr. Muria Nisbett",
-    className: "",
-  },
-  {
-    src: "/framework-voices.jpg",
-    alt: "HeirMark healing circle",
-    className: "",
-  },
-  {
-    src: "/framework-heritage.jpg",
-    alt: "Shared heritage moment",
     className: "md:col-span-2",
   },
   {
-    src: "/books.png",
-    alt: "HeirMark collection",
+    src: "/gallery/ACQ00298.jpg",
+    alt: "HeirMark gallery image one",
+    className: "",
+  },
+  {
+    src: "/gallery/ACQ00296.jpg",
+    alt: "HeirMark gallery image two",
+    className: "",
+  },
+  {
+    src: "/gallery/ACQ00304.jpg",
+    alt: "HeirMark gallery image three",
+    className: "",
+  },
+  {
+    src: "/gallery/ACQ00297.jpg",
+    alt: "HeirMark gallery image four",
+    className: "md:col-span-2",
+  },
+  {
+    src: "/gallery/ACQ00303.jpg",
+    alt: "HeirMark gallery image five",
     className: "",
   },
 ];
@@ -733,90 +734,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-primary">
-        <div className="bg-secondary px-6 py-10 md:px-10">
-          <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-6">
-            <p className="max-w-[620px] font-serif text-[1.25rem] font-light italic text-primary sm:text-[1.55rem]">
-              Turn healing into heritage, conversations into keepsakes, and
-              stories into legacy.
-            </p>
-            <Link
-              href="/buy"
-              className="inline-flex border border-primary bg-primary px-8 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-secondary hover:bg-white hover:text-primary"
-            >
-              Grab My HeirMark Collection
-            </Link>
-          </div>
-        </div>
-        <div className="px-6 py-20 text-white md:px-10">
-          <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-[2fr_1fr_1fr]">
-            <div>
-              <Image
-                src="/HEIRMARK-logo.png"
-                alt="HeirMark logo"
-                width={567.4}
-                height={102.2}
-                className="mb-4 h-auto w-40 brightness-0 invert"
-              />
-              <p className="font-serif text-[1.1rem] font-light italic text-white">
-                Transforming lived experiences into legacy.
-              </p>
-              <p className="mt-3 max-w-[300px] text-[13px] leading-7 text-white/42">
-                HeirMark helps families strengthen identity, restore
-                connection, and preserve generational wisdom through books,
-                gatherings, and guided healing.
-              </p>
-            </div>
-            <div>
-              <span className="mb-4 block text-[9px] font-medium uppercase tracking-[0.2em] text-secondary">
-                Explore
-              </span>
-              <ul className="space-y-3 text-[13px] text-white/54">
-                <li>
-                  <Link href="/framework" className="hover:text-secondary">
-                    The HeirMark Framework
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/collection" className="hover:text-secondary">
-                    The Book Collection
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/events" className="hover:text-secondary">
-                    Events
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:text-secondary">
-                    About
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <span className="mb-4 block text-[9px] font-medium uppercase tracking-[0.2em] text-secondary">
-                Work With Us
-              </span>
-              <p className="mb-3 text-[12px] tracking-[0.04em] text-white/38">
-                Keynotes, workshops, and speaking engagements
-              </p>
-              <Link href="/book" className="text-[13px] text-secondary hover:text-white">
-                Book Dr. Nisbett
-              </Link>
-            </div>
-          </div>
-          <div className="mx-auto mt-12 flex max-w-[1200px] flex-wrap items-center justify-between gap-4 border-t border-white/6 pt-10">
-            <p className="text-[12px] text-white/30">
-              © 2026 HeirMark. All rights reserved.
-            </p>
-            <div className="flex gap-8 text-[12px] text-white/30">
-              <span>Privacy Policy</span>
-              <span>Terms of Use</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
