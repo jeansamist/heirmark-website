@@ -88,3 +88,16 @@
   mask-image: linear-gradient(to top, black, transparent);
   -webkit-mask-image: linear-gradient(to top, black, transparent);
 }
+
+@keyframes gallery-slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.125rem));
+  }
+}
+
+.animate-gallery-slider {
+  animation: gallery-slider 22s linear infinite;
+}

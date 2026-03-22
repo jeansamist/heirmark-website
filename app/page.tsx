@@ -1,6 +1,6 @@
 import { BookingModalTrigger } from "@/components/booking/BookingModal";
-import Reveal from "@/components/Reveal";
 import Footer from "@/components/home/Footer";
+import Reveal from "@/components/Reveal";
 import { events } from "@/data/events";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -124,32 +124,26 @@ const galleryImages = [
   {
     src: "/gallery/ACQ00309.jpg",
     alt: "HeirMark community gathering",
-    className: "md:col-span-2",
   },
   {
     src: "/gallery/ACQ00298.jpg",
     alt: "HeirMark gallery image one",
-    className: "",
   },
   {
     src: "/gallery/ACQ00296.jpg",
     alt: "HeirMark gallery image two",
-    className: "",
   },
   {
     src: "/gallery/ACQ00304.jpg",
     alt: "HeirMark gallery image three",
-    className: "",
   },
   {
     src: "/gallery/ACQ00297.jpg",
     alt: "HeirMark gallery image four",
-    className: "md:col-span-2",
   },
   {
     src: "/gallery/ACQ00303.jpg",
     alt: "HeirMark gallery image five",
-    className: "",
   },
 ];
 
@@ -199,9 +193,9 @@ export default function Home() {
               delay={0.12}
               className="mt-7 max-w-[520px] text-[1.05rem] leading-8 font-light text-white/76"
             >
-              A Caribbean-rooted healing framework transforming family
-              stories, cultural memory, and generational wisdom into lasting
-              legacy before it&apos;s too late.
+              A Caribbean-rooted healing framework transforming family stories,
+              cultural memory, and generational wisdom into lasting legacy
+              before it&apos;s too late.
             </Reveal>
             <Reveal
               delay={0.18}
@@ -244,7 +238,9 @@ export default function Home() {
                   {stat.label}
                 </span>
               </div>
-              {index < 2 && <div className="hidden h-8 w-px bg-secondary/20 md:block" />}
+              {index < 2 && (
+                <div className="hidden h-8 w-px bg-secondary/20 md:block" />
+              )}
             </div>
           ))}
         </div>
@@ -318,8 +314,8 @@ export default function Home() {
               <em className="text-secondary">system.</em>
             </h2>
             <p className="mt-6 max-w-[420px] text-[15px] leading-8 text-foreground/72">
-              Rooted in Caribbean traditions of storytelling, communal care,
-              and cultural memory, HeirMark brings ancestral principles into a
+              Rooted in Caribbean traditions of storytelling, communal care, and
+              cultural memory, HeirMark brings ancestral principles into a
               modern, scalable framework for families everywhere.
             </p>
             <Link
@@ -372,8 +368,8 @@ export default function Home() {
             <div>
               <p className="text-[15px] leading-8 text-foreground/72">
                 The HeirMark Collection is a complete healing system, three
-                books designed to be used together. Each one builds on the
-                last, taking your family from awareness to action to legacy.
+                books designed to be used together. Each one builds on the last,
+                taking your family from awareness to action to legacy.
               </p>
               <div className="mt-6 border-l-2 border-secondary pl-5 font-serif text-[1.1rem] leading-7 text-primary">
                 Sold exclusively as a bundle, by design.
@@ -385,8 +381,14 @@ export default function Home() {
           </Reveal>
           <div className="grid gap-8 lg:grid-cols-3">
             {books.map((book, index) => (
-              <Reveal key={book.title} delay={index * 0.12} className="flex flex-col gap-5">
-                <div className={`relative aspect-[3/4] overflow-hidden bg-gradient-to-br ${book.bg}`}>
+              <Reveal
+                key={book.title}
+                delay={index * 0.12}
+                className="flex flex-col gap-5"
+              >
+                <div
+                  className={`relative aspect-[3/4] overflow-hidden bg-gradient-to-br ${book.bg}`}
+                >
                   <Image
                     src={book.image}
                     alt={book.title}
@@ -446,9 +448,9 @@ export default function Home() {
             </div>
             <div>
               <p className="text-[15px] leading-8 text-foreground/72">
-                Families, elders, educators, and community leaders came
-                together for our inaugural HeirMark gathering, sharing stories,
-                beginning healing, and building legacy together.
+                Families, elders, educators, and community leaders came together
+                for our inaugural HeirMark gathering, sharing stories, beginning
+                healing, and building legacy together.
               </p>
               <Link
                 href="/events"
@@ -458,22 +460,23 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
-          <div className="grid auto-rows-[220px] gap-1 md:grid-cols-4 md:auto-rows-[240px]">
-            {galleryImages.map((image, index) => (
-              <Reveal
-                key={image.src}
-                delay={index * 0.07}
-                className={`relative overflow-hidden bg-primary/10 ${image.className} ${index === 4 ? "md:row-span-1" : ""}`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,31,36,0.35)_0%,transparent_60%)]" />
-              </Reveal>
-            ))}
+          <div className="relative left-1/2 mt-4 w-screen -translate-x-1/2 overflow-hidden">
+            <div className="animate-gallery-slider flex w-max gap-1">
+              {[...galleryImages, ...galleryImages].map((image, index) => (
+                <div
+                  key={`${image.src}-${index}`}
+                  className="relative aspect-[4/3] w-[78vw] flex-none overflow-hidden bg-primary/10 sm:w-[44vw] lg:w-[28vw] xl:w-[24vw]"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,31,36,0.22)_0%,transparent_60%)]" />
+                </div>
+              ))}
+            </div>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-6 py-10">
             <p className="font-serif text-[1.45rem] font-light italic text-primary">
@@ -553,7 +556,7 @@ export default function Home() {
                 fill
                 className="object-cover object-top"
               />
-              <div className="absolute -bottom-3 -right-3 h-[55%] w-[55%] border-2 border-secondary" />
+              {/* <div className="absolute -bottom-3 -right-3 h-[55%] w-[55%] border-2 border-secondary" /> */}
             </div>
             <div className="flex items-stretch border border-[color:var(--surface-strong)] bg-[color:var(--surface-muted)]">
               {[
@@ -566,9 +569,13 @@ export default function Home() {
                     <span className="text-[9px] font-medium uppercase tracking-[0.18em] text-secondary">
                       {item.label}
                     </span>
-                    <span className="text-[13px] text-primary">{item.value}</span>
+                    <span className="text-[13px] text-primary">
+                      {item.value}
+                    </span>
                   </div>
-                  {index < 2 && <div className="w-px bg-[color:var(--surface-strong)]" />}
+                  {index < 2 && (
+                    <div className="w-px bg-[color:var(--surface-strong)]" />
+                  )}
                 </div>
               ))}
             </div>
@@ -586,9 +593,9 @@ export default function Home() {
               <div className="h-px w-12 bg-secondary/55" />
             </div>
             <p className="mb-5 text-[15px] leading-8 text-foreground/72">
-              Dr. Muria Nisbett is a therapist, author, and founder of
-              HeirMark, a legacy-centred healing framework helping individuals
-              and families transform lived experience into generational impact.
+              Dr. Muria Nisbett is a therapist, author, and founder of HeirMark,
+              a legacy-centred healing framework helping individuals and
+              families transform lived experience into generational impact.
             </p>
             <p className="mb-5 text-[15px] leading-8 text-foreground/72">
               Based in the U.S. Virgin Islands, her work blends mental health,
@@ -599,8 +606,7 @@ export default function Home() {
             <p className="text-[15px] leading-8 text-foreground/72">
               Through HeirMark&apos;s books, trainings, and community programs,
               Dr. Nisbett bridges healing, culture, and community innovation,
-              positioning legacy as a powerful tool for personal
-              transformation.
+              positioning legacy as a powerful tool for personal transformation.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-8">
               <BookingModalTrigger className="inline-flex border border-primary bg-primary px-8 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-primary-foreground hover:bg-secondary hover:text-primary">
@@ -704,7 +710,10 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
-          <Reveal delay={0.12} className="border border-[color:var(--surface-strong)] bg-[color:var(--surface)] p-8">
+          <Reveal
+            delay={0.12}
+            className="border border-[color:var(--surface-strong)] bg-[color:var(--surface)] p-8"
+          >
             <form className="flex flex-col gap-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <input
