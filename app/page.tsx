@@ -1,4 +1,5 @@
 import { BookingModalTrigger } from "@/components/booking/BookingModal";
+import ContactForm from "@/components/contact/ContactForm";
 import Footer from "@/components/home/Footer";
 import Reveal from "@/components/Reveal";
 import { events } from "@/data/events";
@@ -248,7 +249,7 @@ export default function Home() {
 
       <section className="relative overflow-hidden bg-primary px-6 py-20 text-center md:px-10">
         <div className="absolute left-8 top-[-3rem] font-serif text-[16rem] leading-none text-secondary/6">
-          "
+          &quot;
         </div>
         <Reveal className="mx-auto flex max-w-[980px] items-center gap-8">
           <div className="hidden h-px flex-1 bg-[linear-gradient(to_right,transparent,var(--color-secondary))] md:block" />
@@ -500,7 +501,7 @@ export default function Home() {
           </span>
           <div className="relative mt-8">
             <div className="absolute -left-8 -top-14 font-serif text-[13rem] leading-none text-secondary/10">
-              "
+              &quot;
             </div>
             <blockquote className="font-serif text-[1.45rem] font-light italic leading-[1.6] sm:text-[1.95rem]">
               {testimonials[0].quote}
@@ -710,35 +711,9 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
-          <Reveal
-            delay={0.12}
-            className="border border-[color:var(--surface-strong)] bg-[color:var(--surface)] p-8"
-          >
-            <form className="flex flex-col gap-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <input
-                  type="text"
-                  placeholder="Full name"
-                  className="border border-[color:var(--surface-strong)] bg-[color:var(--surface-muted)] px-4 py-3 text-[14px] text-primary outline-none placeholder:text-foreground/40"
-                />
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  className="border border-[color:var(--surface-strong)] bg-[color:var(--surface-muted)] px-4 py-3 text-[14px] text-primary outline-none placeholder:text-foreground/40"
-                />
-              </div>
-              <textarea
-                placeholder="How can we support you?"
-                rows={7}
-                className="border border-[color:var(--surface-strong)] bg-[color:var(--surface-muted)] px-4 py-3 text-[14px] text-primary outline-none placeholder:text-foreground/40"
-              />
-              <Link
-                href="/contact"
-                className="inline-flex w-full items-center justify-center border border-primary bg-primary px-6 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-primary-foreground hover:bg-secondary hover:text-primary"
-              >
-                Continue to Contact Page
-              </Link>
-            </form>
+
+          <Reveal delay={0.12}>
+            <ContactForm />
           </Reveal>
         </div>
       </section>

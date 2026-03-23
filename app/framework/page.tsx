@@ -2,9 +2,9 @@ import Reveal from "@/components/Reveal";
 import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/home/Footer";
 import { ArrowRight, BookOpen, Heart, Leaf } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "The HeirMark Framework",
@@ -298,7 +298,7 @@ export default function FrameworkPage() {
           </Reveal>
           <Reveal delay={0.1} className="relative">
             <Image
-              src="/framework-community.webp"
+              src="/framework-community.jpg"
               alt="Community gathering in a cultural space"
               width={900}
               height={1000}

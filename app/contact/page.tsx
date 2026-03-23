@@ -36,11 +36,8 @@ export default function ContactPage() {
     <main className="bg-background text-foreground">
       <section className="pt-28 pb-12 md:pt-36 md:pb-16">
         <div className="container mx-auto px-6">
-          <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-            Contact HeirMark
-          </p>
           <h1 className="mt-4 text-4xl md:text-6xl font-serif">
-            Start the Conversation
+            Reach Out to Our Team
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             Share your questions about HeirMark, the collection, or upcoming
@@ -48,12 +45,7 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
-      <ContactSection
-        id="contact-form"
-        title="Reach Our Team"
-        subtitle="We’re ready when you are."
-        description="Tell us what you’re looking for, and we’ll help you find the right next step."
-      />
+      <ContactSection id="contact-form" />
       <Footer />
     </main>
   );

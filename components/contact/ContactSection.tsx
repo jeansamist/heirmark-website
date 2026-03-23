@@ -13,22 +13,24 @@ const defaultDescription =
 
 export default function ContactSection({
   id = "contact",
-  title = "Contact HeirMark",
-  subtitle = "Let’s Begin the Conversation",
-  description = defaultDescription,
+  title,
+  subtitle,
+  description,
 }: ContactSectionProps) {
   return (
     <section id={id} className="py-20 md:py-28 bg-white/80">
       <div className="container mx-auto px-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
-        <Reveal className="space-y-6">
-          <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-            {title}
-          </p>
-          <h2 className="text-3xl md:text-5xl font-serif">{subtitle}</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            {description}
-          </p>
-        </Reveal>
+        {title && subtitle && description && (
+          <Reveal className="space-y-6">
+            <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
+              {title}
+            </p>
+            <h2 className="text-3xl md:text-5xl font-serif">{subtitle}</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {description}
+            </p>
+          </Reveal>
+        )}
         <Reveal delay={0.1}>
           <ContactForm />
         </Reveal>
