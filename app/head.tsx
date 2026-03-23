@@ -39,6 +39,10 @@ const website = {
 export default function Head() {
   return (
     <>
+      <meta
+        name="developer"
+        content="Ephraim BAHA | jeansamist@gmail.com | https://jeansamist.vercel.app"
+      />
       <JsonLd data={organization} />
       <JsonLd data={website} />
     </>
