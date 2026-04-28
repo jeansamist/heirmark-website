@@ -1,4 +1,3 @@
-import Reveal from "@/components/Reveal";
 import { BookingModalTrigger } from "@/components/booking/BookingModal";
 import {
   ArrowRight,
@@ -27,22 +26,22 @@ const footerLinks = {
 
 const socials = [
   {
-    href: "https://www.instagram.com/HEIRMARK",
+    href: "https://www.instagram.com/heirmarkframework",
     label: "Instagram",
     icon: Instagram,
   },
   {
-    href: "https://www.linkedin.com/company/HEIRMARK",
+    href: "https://www.linkedin.com/company/theheirmarkframework",
     label: "LinkedIn",
     icon: Linkedin,
   },
   {
-    href: "https://www.youtube.com/@HEIRMARK",
+    href: "https://www.youtube.com/@TheHeirMarkFramework ",
     label: "YouTube",
     icon: Youtube,
   },
   {
-    href: "https://www.facebook.com/HEIRMARK",
+    href: "https://www.facebook.com/profile.php?id=61587878037283",
     label: "Facebook",
     icon: Facebook,
   },
