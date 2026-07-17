@@ -12,7 +12,7 @@ import type { ReactElement } from "react";
 export const COLLECTION_ORDER_EMAIL_SUBJECT =
   "Your HeirMark Collection Order Is Confirmed";
 
-const ADMIN_NOTIFICATION_EMAIL = "nizzy81@gmail.com";
+const ADMIN_NOTIFICATION_EMAIL = "victorilome@gmail.com";
 
 type CollectionOrderEmailPayload = {
   fullName: string;
