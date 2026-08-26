@@ -194,6 +194,15 @@ export default function Footer() {
           <Link href="/terms" className="hover:text-white">
             Terms of Use
           </Link>
+          <a
+            href="https://webandbuzz.com"
+            target="_blank"
+            rel="noopener"
+            style={{ opacity: 0.7 }}
+            className="hover:text-white"
+          >
+            Website by Web&amp;Buzz
+          </a>
         </div>
       </div>
     </footer>
