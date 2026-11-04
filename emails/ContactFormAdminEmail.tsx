@@ -5,6 +5,7 @@ export type ContactFormAdminEmailProps = {
   fullName: string;
   email: string;
   message: string;
+  inquiryType?: string;
   submittedAt: string;
 };
 
@@ -13,6 +14,7 @@ export function ContactFormAdminEmail({
   email,
   message,
   submittedAt,
+  inquiryType,
 }: ContactFormAdminEmailProps) {
   return (
     <EmailLayout
@@ -29,6 +31,7 @@ export function ContactFormAdminEmail({
           </a>
         }
       />
+      {inquiryType && <InfoRow label="Inquiry Type" value={inquiryType} />}
       <InfoRow label="Submitted" value={submittedAt} />
 
       <Section style={{ marginTop: "18px" }}>

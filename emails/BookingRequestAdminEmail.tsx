@@ -10,6 +10,9 @@ export type BookingRequestAdminEmailProps = {
   location: string;
   details: string;
   submittedAt: string;
+  eventDate?: string;
+  eventFormat?: string;
+  consent?: boolean;
 };
 
 export function BookingRequestAdminEmail({
@@ -21,6 +24,9 @@ export function BookingRequestAdminEmail({
   location,
   details,
   submittedAt,
+  eventDate,
+  eventFormat,
+  consent,
 }: BookingRequestAdminEmailProps) {
   return (
     <EmailLayout
@@ -41,6 +47,9 @@ export function BookingRequestAdminEmail({
       {phone && <InfoRow label="Phone Number" value={phone} />}
       <InfoRow label="Type of Engagement" value={engagementType} />
       {location && <InfoRow label="Event Location" value={location} />}
+      {eventFormat && <InfoRow label="Event Format" value={eventFormat} />}
+      {eventDate && <InfoRow label="Event Date" value={eventDate} />}
+      <InfoRow label="Acknowledgment" value={consent ? "Confirmed" : "Not provided"} />
       <InfoRow label="Submitted" value={submittedAt} />
 
       {details && (

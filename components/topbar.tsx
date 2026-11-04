@@ -1,190 +1,29 @@
 "use client";
-
-import {
-  BookingModalTrigger,
-  useBookingModal,
-} from "@/components/booking/BookingModal";
-import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/framework", label: "Heirmark Framework" },
-  { href: "/collection", label: "Heirmark Collection" },
-  { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact Us" },
-];
-
-export function Topbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const [isPastHero, setIsPastHero] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const lastScrollY = useRef(0);
-  const pathname = usePathname();
-  const { open } = useBookingModal();
-
-  const isHomePage = useMemo(() => pathname === "/", [pathname]);
-
-  const isActiveLink = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
-    return pathname.startsWith(href);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  useEffect(() => {
-    lastScrollY.current = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY.current;
-      const shouldHide = isScrollingDown && currentScrollY > 120;
-
-      // setIsHidden(shouldHide);
-      setIsHidden(false);
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const heroSection = document.getElementById("top");
-    if (!heroSection || !isHomePage || isMobile) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsPastHero(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsPastHero(!entry.isIntersecting);
-      },
-      { rootMargin: "-80px 0px 0px 0px", threshold: 0 }
-    );
-
-    observer.observe(heroSection);
-    return () => observer.disconnect();
-  }, [isHomePage, isMobile]);
-
-  return (
-    <nav
-      className={`fixed top-0 left-0 z-50 w-full transition-transform duration-300 ${
-        isHidden ? "-translate-y-full" : "translate-y-0"
-      } ${
-        isPastHero
-          ? "border-b border-secondary/20 bg-[color:var(--surface)]/95 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto flex h-20 items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center gap-3">
-          <Image
-            src="/HEIRMARK-logo.png"
-            alt="HeirMark logo"
-            width={567.4}
-            height={102.2}
-            priority
-            className={`h-auto w-34 sm:w-40 ${
-              isPastHero ? "" : "brightness-0 invert"
-            }`}
-          />
-        </Link>
-
-        <div className="hidden lg:block">
-          <ul className="flex items-center gap-10">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`border-b pb-0.5 text-[11px] font-medium uppercase tracking-[0.18em] ${
-                    isActiveLink(link.href)
-                      ? "border-secondary text-primary"
-                      : isPastHero
-                      ? "border-transparent text-foreground/72 hover:border-secondary/60 hover:text-foreground"
-                      : "border-transparent text-primary-foreground/74 hover:border-primary-foreground/45 hover:text-primary-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <BookingModalTrigger className="flex h-11 items-center justify-center border border-primary bg-primary px-5 text-[11px] font-medium uppercase tracking-[0.18em] whitespace-nowrap text-primary-foreground hover:bg-secondary hover:text-primary">
-                Book DR. Nisbett
-              </BookingModalTrigger>
-            </li>
-          </ul>
-        </div>
-
-        <button
-          onClick={toggleMobileMenu}
-          className={`border p-2 lg:hidden ${
-            isPastHero
-              ? "border-primary/20 text-foreground hover:bg-primary/10"
-              : "border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
-          }`}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
-      </div>
-
-      {isMobileMenuOpen && (
-        <div className="fixed left-0 top-20 w-full border-t border-secondary/20 bg-[color:var(--surface)]/95 backdrop-blur-md lg:hidden">
-          <ul className="container mx-auto space-y-4 px-4 py-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block border-b py-2 text-[11px] uppercase tracking-[0.18em] ${
-                    isActiveLink(link.href)
-                      ? "border-secondary text-primary"
-                      : "border-transparent text-muted-foreground hover:border-secondary/60 hover:text-primary"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  open();
-                }}
-                className="flex h-12 w-full items-center justify-center border border-primary bg-primary px-6 text-[11px] font-medium uppercase tracking-[0.18em] text-primary-foreground hover:bg-secondary hover:text-primary"
-              >
-                Book DR. Nisbett
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
-    </nav>
-  );
+import {usePathname} from "next/navigation";
+import {useEffect,useRef,useState} from "react";
+import {navigation,routeActive,type NavItem} from "@/data/navigation";
+import "./navigation.css";
+function NavGroup({item,mobile,pathname,onNavigate}:{item:Extract<NavItem,{children:unknown}>;mobile:boolean;pathname:string;onNavigate:()=>void}){
+ const [expanded,setExpanded]=useState(false);const root=useRef<HTMLDivElement>(null),trigger=useRef<HTMLButtonElement>(null);const id=`${mobile?"mobile":"desktop"}-${item.id}`;
+ useEffect(()=>{if(!expanded||mobile)return;const outside=(e:PointerEvent)=>{if(!root.current?.contains(e.target as Node))setExpanded(false)};document.addEventListener('pointerdown',outside);return()=>document.removeEventListener('pointerdown',outside)},[expanded,mobile]);
+ return <div ref={root} className={`hm-nav-group ${mobile?"hm-nav-group-mobile":""}`} onPointerEnter={e=>{if(!mobile&&e.pointerType==='mouse')setExpanded(true)}} onPointerLeave={e=>{if(!mobile&&e.pointerType==='mouse'&&!root.current?.contains(document.activeElement))setExpanded(false)}} onBlur={e=>{if(!mobile&&!e.currentTarget.contains(e.relatedTarget))setExpanded(false)}} onKeyDown={e=>{if(e.key==='Escape'&&expanded){e.preventDefault();e.stopPropagation();setExpanded(false);trigger.current?.focus()}}}>
+ <button ref={trigger} type="button" className="hm-nav-trigger" data-active={item.routes.some(route=>routeActive(pathname,route))||undefined} aria-expanded={expanded} aria-controls={id} onClick={e=>setExpanded(v=>!mobile&&e.detail>0?true:!v)} onKeyDown={e=>{if(e.key==='ArrowDown'){e.preventDefault();setExpanded(true);requestAnimationFrame(()=>root.current?.querySelector<HTMLAnchorElement>('a')?.focus())}}}>{item.label}<svg className="hm-nav-chevron" aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+ <div className="hm-nav-disclosure" id={id} data-open={expanded} inert={!expanded}><div className="hm-nav-disclosure-inner">{item.children.map(link=><Link key={link.href} href={link.href} aria-current={pathname===link.href?"page":undefined} onClick={()=>{setExpanded(false);onNavigate()}}>{link.label}<span className="hm-dropdown-arrow" aria-hidden="true">→</span></Link>)}</div></div></div>;
 }
+export function Topbar(){
+ const [open,setOpen]=useState(false);const pathname=usePathname();const toggle=useRef<HTMLButtonElement>(null),panel=useRef<HTMLDivElement>(null),header=useRef<HTMLElement>(null);
+ const close=()=>{setOpen(false);toggle.current?.focus()};
+ useEffect(()=>{if(!open)return;const previous=document.body.style.overflow;document.body.style.overflow='hidden';panel.current?.querySelector<HTMLElement>('button,a')?.focus();
+ const onKey=(e:KeyboardEvent)=>{if(e.key==='Escape'){e.preventDefault();setOpen(false);toggle.current?.focus()}if(e.key==='Tab'){const items=[toggle.current,...Array.from(panel.current?.querySelectorAll<HTMLElement>('a,button')??[])].filter((el):el is HTMLElement=>!!el&&!el.closest('[inert]')&&el.getClientRects().length>0);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}};
+ const outside=(e:PointerEvent)=>{if(!header.current?.contains(e.target as Node)){setOpen(false);toggle.current?.focus()}};
+ const wide=matchMedia('(min-width:1280px)');const resize=()=>{if(wide.matches){setOpen(false);header.current?.querySelector<HTMLAnchorElement>('a[aria-label="HeirMark home"]')?.focus()}if(panel.current)panel.current.style.maxHeight=`${window.innerHeight-(header.current?.getBoundingClientRect().bottom??80)}px`};resize();
+ document.addEventListener('keydown',onKey);document.addEventListener('pointerdown',outside);window.addEventListener('resize',resize);wide.addEventListener('change',resize);
+ return()=>{document.body.style.overflow=previous;document.removeEventListener('keydown',onKey);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',resize);wide.removeEventListener('change',resize)};
+ },[open]);
+ const renderItems=(mobile:boolean)=>navigation.map(item=>'children'in item?<NavGroup key={item.id} item={item} mobile={mobile} pathname={pathname} onNavigate={mobile?close:()=>{}}/>:<Link key={item.href} href={item.href} data-active={routeActive(pathname,item.href)||undefined} aria-current={pathname===item.href?"page":undefined} onClick={mobile?close:undefined}>{item.label}</Link>);
+ return <header className="hm-header" ref={header}><a href="#main-content" className="hm-skip">Skip to content</a><div className="hm-container hm-header-inner"><Link href="/" aria-label="HeirMark home" aria-current={pathname==='/'?'page':undefined}><Image src="/heirmark-official-logo.png" alt="" width={568} height={103} className="hm-logo" sizes="220px" priority/></Link><nav aria-label="Main navigation" className="hm-desktop-nav">{renderItems(false)}<Link href="/speaking" className="hm-button" data-active={pathname==='/speaking'||undefined} aria-current={pathname==='/speaking'?'page':undefined}>Book Dr. Muria <span aria-hidden="true">↗</span></Link></nav><button className="hm-menu-toggle" ref={toggle} aria-label={open?'Close menu':'Open menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={()=>setOpen(v=>!v)}>{open?'Close ×':'Menu ☰'}</button></div><div id="mobile-navigation" ref={panel} className="hm-mobile-panel" hidden={!open}>{open&&<nav aria-label="Mobile navigation">{renderItems(true)}<Link href="/speaking" className="hm-button" aria-current={pathname==='/speaking'?'page':undefined} onClick={close}>Book Dr. Muria</Link></nav>}</div><noscript><nav className="hm-nojs-nav" aria-label="Navigation">{navigation.flatMap(item=>'children'in item?item.children:[item]).map(link=><Link key={link.href} href={link.href}>{link.label}</Link>)}<Link href="/speaking">Book Dr. Muria</Link></nav><style>{`.hm-desktop-nav,.hm-menu-toggle{display:none!important}`}</style></noscript></header>;
+}
+
+

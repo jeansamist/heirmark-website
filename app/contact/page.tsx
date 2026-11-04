@@ -1,52 +1,15 @@
-import ContactSection from "@/components/contact/ContactSection";
-import Footer from "@/components/home/Footer";
+import PageSeo from "@/components/seo/PageSeo";
+import { withSocialMetadata } from "@/lib/seo-metadata";
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Contact HeirMark",
-  description:
-    "Reach out to HeirMark with questions about the framework, events, or the book collection.",
-  alternates: {
-    canonical: "/contact",
-  },
-  openGraph: {
-    title: "Contact HeirMark",
-    description:
-      "Reach out to HeirMark with questions about the framework, events, or the book collection.",
-    url: "/contact",
-    images: [
-      {
-        url: "/hero-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact HeirMark",
-    description:
-      "Reach out to HeirMark with questions about the framework, events, or the book collection.",
-    images: ["/hero-image.png"],
-  },
-};
-
-export default function ContactPage() {
-  return (
-    <main className="bg-background text-foreground">
-      <section className="pt-28 pb-12 md:pt-36 md:pb-16">
-        <div className="container mx-auto px-6">
-          <h1 className="mt-4 text-4xl md:text-6xl font-serif">
-            Reach Out to Our Team
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            Share your questions about HeirMark, the collection, or upcoming
-            events, and we will follow up shortly.
-          </p>
-        </div>
-      </section>
-      <ContactSection id="contact-form" />
-      <Footer />
-    </main>
-  );
-}
+import Link from "next/link";
+import ContactPageForm from "./ContactPageForm";
+import "./contact.css";
+const description = "Get in touch with the HeirMark team for general inquiries, books, events, media requests, and opportunities to connect.";
+export const metadata: Metadata = withSocialMetadata({title:{absolute:"Contact HeirMark | Get in Touch"},description,alternates:{canonical:"/contact"},openGraph:{title:"Contact HeirMark | Get in Touch",description,url:"/contact"}}, "/contact");
+export default function ContactPage(){return <><main tabIndex={-1} id="main-content" className="ct-page"><PageSeo path="/contact" name="Contact HeirMark"/><div className="ct-layout">
+<header className="ct-intro"><p className="ct-eyebrow">CONTACT HEIRMARK</p><h1>Let&apos;s Start a Conversation.</h1><p>Have a question or an idea you&apos;d like to share? We&apos;d love to hear from you.</p></header>
+<ContactPageForm/>
+<section className="ct-pathways" aria-labelledby="pathways-title"><h2 id="pathways-title">Looking for Something Specific?</h2>
+<Link className="ct-pathway" href="/speaking"><div><h3>Speaking Engagements</h3><span>Book Dr. Muria Nisbett</span></div><span className="ct-arrow" aria-hidden="true">↗</span></Link>
+<Link className="ct-pathway" href="/partnerships"><div><h3>Partnerships</h3><span>Explore Partnerships</span></div><span className="ct-arrow" aria-hidden="true">↗</span></Link>
+</section></div></main></>}

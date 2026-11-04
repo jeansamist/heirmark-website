@@ -1,52 +1,16 @@
 import { sendContactFormEmail } from "@/lib/email";
+import { inquiryTypes } from "@/lib/contact-validation";
 import { NextRequest, NextResponse } from "next/server";
-
 export const runtime = "nodejs";
-
-type ContactPayload = {
-  fullName?: string;
-  email?: string;
-  message?: string;
-};
-
-function getStringValue(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-export async function POST(request: NextRequest) {
-  const body = (await request.json()) as ContactPayload;
-
-  const fullName = getStringValue(body.fullName);
-  const email = getStringValue(body.email);
-  const message = getStringValue(body.message);
-
-  if (!fullName || !email || !message || !isValidEmail(email)) {
-    return NextResponse.json(
-      {
-        error:
-          "Please provide a valid full name, email address, and message.",
-      },
-      { status: 400 }
-    );
-  }
-
-  const result = await sendContactFormEmail({ fullName, email, message });
-
-  if (!result.sent) {
-    if (result.skipped) {
-      console.warn("Contact form email skipped:", result.reason);
-      return NextResponse.json({ status: "skipped", reason: result.reason });
-    }
-
-    return NextResponse.json(
-      { error: "We couldn't send your message. Please try again shortly." },
-      { status: 502 }
-    );
-  }
-
-  return NextResponse.json({ status: "sent" });
+const failure="We couldn't send your message right now. Please try again.";
+export async function POST(request:NextRequest){
+ let body:Record<string,unknown>;
+ try{const parsed=await request.json();if(!parsed||typeof parsed!=="object"||Array.isArray(parsed))throw new Error();body=parsed;}catch{return NextResponse.json({error:failure},{status:400});}
+ const value=(key:string)=>typeof body[key]==="string"?(body[key] as string).trim():"";
+ const fullName=value("fullName"),email=value("email"),message=value("message"),inquiryType=value("inquiryType");
+ if(!fullName||!message||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||(body.inquiryType!==undefined&&!inquiryTypes.some(type=>type===inquiryType)))return NextResponse.json({error:failure},{status:400});
+ try{const result=await sendContactFormEmail({fullName,email,message,...(inquiryType?{inquiryType}:{})});
+ if(!result.sent)return NextResponse.json({error:failure},{status:result.skipped?503:502});
+ return NextResponse.json({status:"sent"});
+ }catch{return NextResponse.json({error:failure},{status:502});}
 }

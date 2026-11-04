@@ -1,79 +1,18 @@
 import { sendBookingRequestEmail } from "@/lib/email";
+import { validateBooking, type BookingValues } from "@/lib/booking-validation";
 import { NextRequest, NextResponse } from "next/server";
-
 export const runtime = "nodejs";
-
-type BookingPayload = {
-  fullName?: string;
-  organization?: string;
-  email?: string;
-  phone?: string;
-  engagementType?: string;
-  location?: string;
-  details?: string;
-  consent?: boolean;
-};
-
-function getStringValue(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
 export async function POST(request: NextRequest) {
-  const body = (await request.json()) as BookingPayload;
-
-  const fullName = getStringValue(body.fullName);
-  const organization = getStringValue(body.organization);
-  const email = getStringValue(body.email);
-  const phone = getStringValue(body.phone);
-  const engagementType = getStringValue(body.engagementType);
-  const location = getStringValue(body.location);
-  const details = getStringValue(body.details);
-
-  if (
-    !fullName ||
-    !organization ||
-    !email ||
-    !engagementType ||
-    !body.consent ||
-    !isValidEmail(email)
-  ) {
-    return NextResponse.json(
-      {
-        error:
-          "Please provide a valid full name, organization, email address, engagement type, and consent.",
-      },
-      { status: 400 }
-    );
-  }
-
-  const result = await sendBookingRequestEmail({
-    fullName,
-    organization,
-    email,
-    phone,
-    engagementType,
-    location,
-    details,
-  });
-
-  if (!result.sent) {
-    if (result.skipped) {
-      console.warn("Booking request email skipped:", result.reason);
-      return NextResponse.json({ status: "skipped", reason: result.reason });
-    }
-
-    return NextResponse.json(
-      {
-        error:
-          "We couldn't send your booking request. Please try again shortly.",
-      },
-      { status: 502 }
-    );
-  }
-
-  return NextResponse.json({ status: "sent" });
+ let body: Record<string, unknown>;
+ try { body = await request.json(); if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error(); }
+ catch { return NextResponse.json({ error: "Please provide a valid booking request." }, { status: 400 }); }
+ const str = (key: string) => typeof body[key] === "string" ? (body[key] as string).trim() : "";
+ const values: BookingValues = { fullName: str("fullName"), email: str("email"), organization: str("organization"), phone: str("phone"), engagementType: str("engagementType"), eventFormat: str("eventFormat"), eventDate: str("eventDate"), location: str("location"), details: str("details"), consent: body.consent === true };
+ const errors = validateBooking(values);
+ // Older clients omit the new key; preserve their location-required contract.
+ if (!("eventFormat" in body)) delete errors.eventFormat;
+ if (Object.keys(errors).length) return NextResponse.json({ error: "Please check the highlighted fields.", errors }, { status: 400 });
+ const result = await sendBookingRequestEmail(values);
+ if (!result.sent) return NextResponse.json({ error: "We couldn't send your booking request. Your information has been kept so you can try again shortly." }, { status: result.skipped ? 503 : 502 });
+ return NextResponse.json({ status: "sent" });
 }

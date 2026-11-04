@@ -1,0 +1,15 @@
+"use client";
+import {useState,type FocusEvent,type FormEvent} from "react";
+import {interests,validateInquiry,type InquiryValues} from "@/lib/partnership-validation";
+export default function InquiryForm(){const [errors,setErrors]=useState<Partial<Record<keyof InquiryValues,string>>>({});
+function values(f:HTMLFormElement){const d=new FormData(f);return {fullName:String(d.get("fullName")||""),email:String(d.get("email")||""),organization:String(d.get("organization")||""),interest:String(d.get("interest")||""),idea:String(d.get("idea")||""),acknowledgment:d.get("acknowledgment")==="on"};}
+function blur(e:FocusEvent<HTMLFormElement>){const name=(e.target as unknown as HTMLInputElement).name as keyof InquiryValues;const next=validateInquiry(values(e.currentTarget));setErrors(old=>({...old,[name]:next[name]}));}
+function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();const f=e.currentTarget;setErrors(validateInquiry(values(f)));requestAnimationFrame(()=>f.querySelector<HTMLElement>("[aria-invalid=true]")?.focus());}
+const props=(name:keyof InquiryValues,required=true)=>({id:`pp-${name}`,name,required,"aria-invalid":errors[name]?true:undefined,"aria-describedby":errors[name]?`pp-${name}-error`:undefined});
+const error=(name:keyof InquiryValues)=>errors[name]&&<p className="pp-error" id={`pp-${name}-error`}>{errors[name]}</p>;
+return <form className="pp-form" onBlur={blur} onSubmit={submit} noValidate data-pp-reveal aria-label="Partnership Inquiry Form"><h3>Partnership Inquiry Form</h3>
+{[["fullName","Full Name","name"],["email","Email Address","email"],["organization","Organization / Platform","organization"]].map(([name,label,autoComplete])=><div className="pp-field" key={name}><label htmlFor={`pp-${name}`}>{label} {name==="organization"?<span>(optional)</span>:<span aria-hidden="true">*</span>}</label><input {...props(name as keyof InquiryValues,name!=="organization")} type={name==="email"?"email":"text"} autoComplete={autoComplete}/>{error(name as keyof InquiryValues)}</div>)}
+<div className="pp-field"><label htmlFor="pp-interest">Partnership Interest <span aria-hidden="true">*</span></label><select {...props("interest")} defaultValue=""><option value="" disabled>Select partnership interest</option>{interests.map(i=><option key={i}>{i}</option>)}</select>{error("interest")}</div>
+<div className="pp-field"><label htmlFor="pp-idea">Tell Us About Your Idea <span aria-hidden="true">*</span></label><textarea {...props("idea")} rows={6} placeholder="Briefly describe your proposed collaboration, the audience or community involved, and what you hope to achieve."/>{error("idea")}</div>
+<div><label className="pp-ack"><input {...props("acknowledgment")} type="checkbox"/><span>I understand this is a partnership inquiry and that the HeirMark team will follow up to discuss potential next steps. <span aria-hidden="true">*</span></span></label>{error("acknowledgment")}</div>
+<button className="hm-button" disabled aria-describedby="pp-submission-note">Send Partnership Inquiry</button><p id="pp-submission-note">Partnership inquiries will be available soon.</p></form>}

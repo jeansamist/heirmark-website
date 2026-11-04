@@ -1,7 +1,8 @@
+import { SITE_ORIGIN, LEGACY_HOST } from "./lib/site-url";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  devIndicators: false,
   images: {
     remotePatterns: [
       { hostname: "tapback.co" },
@@ -13,6 +14,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/:path*", has: [{ type: "host", value: LEGACY_HOST }], destination: `${SITE_ORIGIN}/:path*`, permanent: true },
       {
         source: "/heirmark-framework",
         destination: "/framework",

@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "eyebrow": "THE HEIRMARK FRAMEWORK",
+    "title": "Honour the Past. Heal the Present. Shape the Future.",
+    "intro": "The HeirMark Framework is a culturally rooted approach to healing, connection, and legacy preservation. Through reflection, meaningful conversations, and shared experiences, it helps individuals, families, and communities understand their stories, strengthen relationships, and preserve what matters for generations to come.",
+    "cta": "Explore the Three Pillars"
+  },
+  "foundation": {
+    "eyebrow": "OUR FOUNDATION",
+    "title": "Rooted in Culture. Carried Through Generations.",
+    "paragraphs": [
+      "Across generations, Caribbean families and communities have preserved wisdom through storytelling, faith, music, food, traditions, and shared experiences. These everyday moments have shaped identities, strengthened relationships, and carried memories from one generation to the next.",
+      "The HeirMark Framework draws from this rich cultural heritage, recognizing that our stories hold more than memories. They carry lessons, values, experiences, and connections that deserve to be understood and preserved.",
+      "By creating intentional spaces for reflection, conversation, and remembrance, HeirMark helps people honour where they come from while shaping what they pass forward."
+    ]
+  },
+  "pillars": {
+    "eyebrow": "THE HEART OF HEIRMARK",
+    "title": "Three Pillars. One Journey Across Generations.",
+    "intro": "The HeirMark Framework is built around three interconnected pillars: Identity, Connection, and Legacy. Together, they guide individuals and communities through understanding their experiences, strengthening relationships, and preserving the stories that shape future generations.",
+    "chapters": [
+      {
+        "number": "01",
+        "title": "Identity",
+        "support": "Understanding who we are and where we come from.",
+        "paragraphs": [
+          "Our identities are shaped by the stories we inherit, the experiences we live, and the values passed down through generations.",
+          "The Identity pillar encourages reflection on personal and family history, cultural roots, inherited beliefs, and the experiences that influence how we see ourselves and others."
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Connection",
+        "support": "Creating space for understanding and meaningful relationships.",
+        "paragraphs": [
+          "Healing and connection grow when people feel heard, respected, and understood.",
+          "The Connection pillar focuses on strengthening communication across generations, encouraging honest conversations, building trust, and creating opportunities for families and communities to connect through shared experiences."
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Legacy",
+        "support": "Preserving the stories and wisdom that deserve to live on.",
+        "paragraphs": [
+          "Legacy is more than what we leave behind. It is what we intentionally share with those who come after us.",
+          "The Legacy pillar encourages people to capture memories, document family histories, preserve cultural traditions, and transform meaningful conversations into lasting keepsakes for future generations."
+        ]
+      }
+    ],
+    "closing": "Identity helps us understand our stories. Connection helps us share them. Legacy ensures they are not forgotten."
+  },
+  "meaning": {
+    "eyebrow": "WHY HEIRMARK MATTERS",
+    "title": "When Stories Are Lost, Pieces of Our History Go With Them.",
+    "paragraphs": [
+      "Every family and community carries stories of resilience, sacrifice, love, struggle, and hope. Yet many of these experiences remain unspoken, and valuable memories can disappear when generations pass without opportunities to share them.",
+      "For Caribbean communities and families across the diaspora, histories of migration, displacement, cultural change, and separation make preserving these connections especially meaningful.",
+      "The HeirMark Framework creates opportunities to reflect on the past, open conversations in the present, and preserve the wisdom that future generations can learn from."
+    ],
+    "closing": "Because every story matters.",
+    "support": "Every voice carries wisdom. Every generation deserves the opportunity to understand its roots."
+  },
+  "practice": {
+    "eyebrow": "HEIRMARK IN PRACTICE",
+    "title": "Meaningful Across Families, Communities, and Institutions.",
+    "intro": "The HeirMark Framework can provide a foundation for reflection, dialogue, and legacy preservation in different settings. Its three pillars offer a shared language for exploring identity, strengthening relationships, and creating meaningful experiences across generations.",
+    "items": [
+      {
+        "title": "Families & Intergenerational Groups",
+        "description": "Encouraging conversations between generations, helping families explore their shared histories, deepen understanding, and preserve memories."
+      },
+      {
+        "title": "Schools & Educators",
+        "description": "Supporting learning experiences that explore personal identity, cultural heritage, storytelling, and the value of intergenerational knowledge."
+      },
+      {
+        "title": "Community & Cultural Organizations",
+        "description": "Creating opportunities for collective reflection, cultural preservation, shared storytelling, and stronger community connections."
+      },
+      {
+        "title": "Faith Communities & Institutions",
+        "description": "Providing a thoughtful foundation for gatherings, conversations, and experiences centered on relationships, healing, belonging, and legacy."
+      }
+    ]
+  },
+  "journey": {
+    "eyebrow": "CONTINUE THE JOURNEY",
+    "title": "The Stories We Carry Can Shape the Generations That Follow.",
+    "intro": "Whether you're exploring your own family's story or creating meaningful experiences within an organization, HeirMark offers opportunities to connect more deeply with the people, experiences, and legacies that matter.",
+    "paths": [
+      {
+        "title": "Explore the HeirMark Collection",
+        "description": "Discover the three companion books that bring Identity, Connection, and Legacy into personal reflection and family conversations.",
+        "cta": "Explore the Collection",
+        "href": "/collection"
+      },
+      {
+        "title": "Partner With HeirMark",
+        "description": "Explore how the framework could support meaningful conversations, educational experiences, and community initiatives within your organization.",
+        "cta": "Explore Partnerships",
+        "href": "/partnerships"
+      }
+    ]
+  }
+}

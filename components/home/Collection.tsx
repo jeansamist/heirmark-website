@@ -14,7 +14,7 @@ const bookDetails = [
       "Heal emotional and cultural wounds",
       "Build a meaningful legacy",
     ],
-    image: "/book1.png",
+    image: "/where-healing-becomes-heritage-cover.png",
   },
   {
     label: "Book 2 (Parent–Child Edition)",
@@ -26,7 +26,7 @@ const bookDetails = [
       "Reduce conflict and strengthen trust",
       "Support children’s emotional resilience",
     ],
-    image: "/book2.png",
+    image: "/the-language-of-healing-cover.png",
   },
   {
     label: "Book 3",
@@ -38,7 +38,7 @@ const bookDetails = [
       "Honour elders and preserve heritage",
       "Save memories, traditions, and lessons",
     ],
-    image: "/book3.png",
+    image: "/where-conversations-become-keepsakes-cover.png",
   },
 ];
 

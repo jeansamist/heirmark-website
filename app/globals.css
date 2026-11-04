@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 :root {
+  --hm-radius-cta: 8px;
+  --hm-radius-control: 6px;
+  --hm-radius-input: 8px;
   --background: #ffffff;
   --foreground: #0f1f24;
   --primary: #2d5f6e;
@@ -48,13 +51,37 @@
     border-radius: 0 !important;
     box-shadow: none !important;
   }
+  /* Match the existing important square reset without rounding cards or images. */
+  button,
+  .hm-button,
+  a.inline-flex[class*="rounded"],
+  [role="button"] {
+    border-radius: var(--hm-radius-cta) !important;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .hm-menu-toggle,
+  .hm-announcements button,
+  button[aria-label^="Close"],
+  button.h-10 {
+    border-radius: var(--hm-radius-control) !important;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]),
+  textarea,
+  select {
+    border-radius: var(--hm-radius-input) !important;
+    min-height: 44px;
+  }
+  :is(button, input, textarea, select, [role="button"]):focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-dm-sans-sans), sans-serif;
   }
   body,
   html {
-    overflow-x: hidden !important;
     scroll-behavior: smooth;
   }
   a,

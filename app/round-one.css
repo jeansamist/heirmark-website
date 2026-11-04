@@ -1,0 +1,219 @@
+/* Controlled Round 1: exact approved dimensions and compositions. */
+@layer base {
+ .hm-action-photo, .hm-footer-headshot { border-radius: var(--hm-radius-cta) !important; }
+ .hm-read-toggle, .hm-social-links a { border-radius: var(--hm-radius-control) !important; }
+ .hm-faq-question { border-radius: 0 !important; }
+ .hm-faq-indicator { border-radius: 50% !important; }
+}
+.hm-hero-full .hm-hero-copy { width: min(calc(100% - 80px), 1200px); max-width: 1200px; margin-inline: auto; padding: 64px 0; }
+.hm-hero-full .hm-hero-copy > * { max-width: 650px; }
+.hm-hero-full h1 { font-size: clamp(48px,4.8vw,72px); line-height: 1.05; text-wrap: wrap; }
+.hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { max-width: 540px; font-size: 18px; }
+.hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { margin-bottom: 0; }
+.hm-hero-full .hm-actions { margin-top: 24px; }
+#framework { scroll-margin-top: 100px; }
+html { scroll-padding-top: 0; }
+.hm-action { max-width: 1200px; display: grid; grid-template-columns: minmax(0,52fr) minmax(0,48fr); column-gap: 56px; padding-block: 80px; align-items: center; }
+.hm-action-intro { grid-column: 1; grid-row: 1; }
+.hm-action .hm-supporting-paths { grid-column: 1; grid-row: 2; margin-top: 28px; }
+.hm-action-photo { grid-column: 2; grid-row: 1 / span 2; aspect-ratio: 4/5; align-self: center; }
+.hm-action-photo img { object-fit: cover; object-position: 48% center; }
+.hm-action h2 { margin-bottom: 28px; }
+.hm-action-intro h3 { font-size: 24px; }
+.hm-action .hm-supporting-paths > a, .hm-action .hm-supporting-paths > a:first-child { grid-template-columns: 44px minmax(0,1fr) 16px; gap: 18px; padding: 18px 0; margin: 0; border-top: 1px solid var(--primary-soft); background: transparent; }
+.hm-action .hm-supporting-paths h3 { font-size: 20px; margin-bottom: 8px; }
+.hm-action .hm-supporting-paths p { font-size: 16px; line-height: 1.5; margin: 0; }
+.hm-action .hm-supporting-paths svg { width: 44px; height: 44px; }
+.hm-action .hm-supporting-paths a:is(:hover,:focus-visible) h3 { color: var(--primary); }
+.hm-action .hm-supporting-paths .hm-text-link { margin-top: 4px; }
+.hm-collection .hm-book-layout { max-width: 1200px; grid-template-columns: minmax(0,42fr) minmax(0,58fr); gap: 64px; align-items: center; }
+.hm-publication { padding-block: 64px; }
+.hm-publication .hm-book-layout { max-width: 1200px; grid-template-columns: minmax(0,58fr) minmax(0,42fr); gap: 64px; align-items: center; }
+.hm-publication .hm-ebook-cover { grid-column: 2; grid-row: 1; max-width: 340px; width: 100%; }
+.hm-launch-copy { grid-column: 1; grid-row: 1; }
+.hm-home .hm-publication h3 { font-size: clamp(38px,3vw,42px); line-height: 1.15; max-width: 540px; margin-bottom: 14px; }
+.hm-publication p { font-size: 16px; line-height: 1.6; margin-bottom: 16px; }
+.hm-publication .hm-lead { margin-top: 22px; font-size: 18px; }
+.hm-publication .hm-kindle-status { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--tertiary); }
+.hm-publication .hm-kindle-price { font-size: 21px; font-weight: 700; margin-top: 20px; }
+.hm-read-toggle { color: var(--background); border: 1px solid var(--primary-soft); font-size: 16px; padding: 8px 12px; margin-bottom: 8px; }
+.hm-read-toggle:hover { background: var(--primary-deep); }
+.hm-expand { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 220ms ease, visibility 220ms; }
+.hm-expand[data-open="true"] { grid-template-rows: 1fr; visibility: visible; }
+.hm-expand-inner { overflow: hidden; min-height: 0; }
+.hm-read-more .hm-expand-inner > p { padding-top: 12px; }
+.hm-physical-launch { border-top: 1px solid var(--primary-soft); padding-top: 20px; margin-top: 24px; }
+.hm-physical-launch p:first-child { font-size: 12px; letter-spacing: .12em; font-weight: 700; margin-bottom: 8px; }
+.hm-physical-launch p:last-child { margin: 0; color: var(--tertiary); font-weight: 600; }
+.hm-purchase-unavailable { cursor: not-allowed; opacity: .75; }
+.hm-publication .hm-pending { margin-top: 10px; font-size: 14px; }
+.hm-home .hm-faq { display: block; max-width: 1200px; padding-block: 88px; color: var(--primary-deep); }
+.hm-faq > .hm-eyebrow { text-align: center; font-size: 12px; letter-spacing: .12em; margin: 0 0 12px !important; }
+.hm-home .hm-faq > h2 { font-size: 44px; line-height: 1.15; max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.hm-faq-accordion { max-width: 760px; margin-inline: auto; }
+.hm-faq-item, .hm-faq-item:first-child { border-top: 0; border-bottom: 1px solid var(--surface-strong); }
+.hm-faq-item > h3 { margin: 0; }
+.hm-faq-question { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; padding: 24px 0; text-align: left; color: var(--primary-deep); background: transparent; font-family: var(--font-dm-sans-sans),sans-serif; font-size: 19px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.hm-faq-question:is(:hover,[aria-expanded="true"]) { color: var(--primary); }
+.hm-faq-indicator { width: 36px; height: 36px; flex-shrink: 0; border: 1px solid var(--primary-soft); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 400; }
+.hm-faq-answer { max-width: 680px; padding: 16px 0 24px; }
+.hm-faq-answer p { font-size: 16px; line-height: 1.65; margin-bottom: 0; }
+.hm-faq-answer .hm-text-link { margin-top: 12px; }
+.hm-framework { padding-block: 88px; }
+.hm-pillars { gap: 32px; }
+.hm-pillar-mark .hm-icon svg { width: 48px; height: 48px; }
+.hm-pillars:before { top: 24px; left: 24px; right: 24px; }
+.hm-pillars h3 { font-size: 22px; }
+.hm-pillars p { font-size: 16px; line-height: 1.6; }
+.hm-footer-invitation { grid-template-columns: minmax(0,50fr) minmax(0,30fr) minmax(0,20fr); gap: 24px; }
+.hm-footer-headshot { width: 130px; height: 150px; object-fit: cover; object-position: center 25%; justify-self: end; }
+.hm-social-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.hm-social-links a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: var(--surface); }
+.hm-social-links a:hover { color: var(--secondary); background: var(--primary); }
+@media (prefers-reduced-motion: no-preference) {
+ .hm-hero h1 { animation: hm-reveal .65s .06s var(--hm-ease) both; }
+ .hm-physical-launch.hm-reveal time { animation: hm-reveal .6s .15s both; }
+}
+@media (max-width: 767px) {
+ .hm-hero-full .hm-hero-copy { width: 100%; max-width: 100%; padding: 48px 20px; }
+ .hm-hero-full h1 { font-size: clamp(36px,9vw,46px); line-height: 1.05; }
+ .hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { font-size: 16px; }
+ .hm-action { width: calc(100% - 40px); grid-template-columns: minmax(0,1fr); padding-block: 48px; gap: 28px; }
+ .hm-action-intro { grid-column: 1; grid-row: 1; }
+ .hm-action-photo { grid-column: 1; grid-row: 2; }
+ .hm-action .hm-supporting-paths { grid-column: 1; grid-row: 3; margin: 0; }
+ .hm-collection, .hm-publication { padding-block: 48px; }
+ .hm-collection .hm-book-layout, .hm-publication .hm-book-layout { width: calc(100% - 40px); grid-template-columns: minmax(0,1fr); gap: 32px; }
+ .hm-book-covers { max-width: 240px; margin-inline: auto; }
+ .hm-publication .hm-ebook-cover { grid-column: 1; grid-row: 1; max-width: 240px; }
+ .hm-launch-copy { grid-column: 1; grid-row: 2; }
+ .hm-home .hm-publication h3 { font-size: clamp(30px,8vw,34px); }
+ .hm-home .hm-faq { width: calc(100% - 40px); padding-block: 56px; }
+ .hm-home .hm-faq > h2 { font-size: clamp(30px,8vw,34px); }
+ .hm-faq-question { font-size: 17px; padding-block: 20px; gap: 16px; }
+ .hm-faq-indicator { width: 32px; height: 32px; }
+ .hm-framework { padding-block: 64px; }
+ .hm-pillars { gap: 32px; }
+ .hm-pillars article { grid-template-columns: 40px minmax(0,1fr); }
+ .hm-pillar-mark .hm-icon svg { width: 40px; height: 40px; }
+ .hm-pillars h3 { font-size: 20px; }
+ .hm-pillars:before { top: 20px; bottom: 20px; left: 20px; right: auto; }
+ .hm-footer-invitation { grid-template-columns: minmax(0,1fr) 100px; gap: 24px 16px; }
+ .hm-footer-invitation > div:first-child { grid-column: 1 / -1; }
+ .hm-footer-headshot { width: 100px; height: 115px; }
+ .hm-footer-invitation .hm-button { padding-inline: 12px; }
+ .hm-footer .hm-engagements { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .hm-expand { transition: none; } }
+
+/* Round 2: approved collection, publication scale, and portrait treatment. */
+@layer base {
+ .hm-collection-badge, .hm-footer-headshot, .hm-footer-portrait::before, .hm-footer-portrait::after { border-radius: 50% !important; }
+}
+.hm-hero-full .hm-actions { gap: 12px; }
+.hm-collection { padding-block: 64px; }
+.hm-collection-artwork { position: relative; padding: 112px 0 0 12px; min-width: 0; }
+.hm-collection-badge { position: absolute; top: 0; left: 0; width: 88px; height: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--primary-deep); color: var(--background); }
+.hm-collection-badge strong { font-size: 28px; line-height: 1.15; }
+.hm-collection-badge span { font-size: 9px; font-weight: 700; letter-spacing: .06em; margin-top: 4px; }
+.hm-collection .hm-book-covers { max-width: none; width: 100%; }
+.hm-collection-copy .hm-eyebrow { font-size: 12px; margin-bottom: 14px; }
+.hm-collection-copy h3 { font-size: clamp(30px,3vw,42px); line-height: 1.15; }
+.hm-collection-emphasis { font-weight: 700; }
+.hm-collection .hm-actions { display: flex; flex-wrap: nowrap; gap: 12px; align-items: stretch; }
+.hm-collection .hm-button { background: var(--primary-deep); border-color: var(--primary-deep); color: var(--background); text-align: center; }
+.hm-collection .hm-button-secondary { background: transparent; color: var(--primary-deep); }
+.hm-collection .hm-button:hover { background: var(--primary); color: var(--background); }
+.hm-publication .hm-ebook-cover { max-width: 420px; height: auto; object-fit: contain; justify-self: center; }
+.hm-footer-portrait { position: relative; width: 132px; height: 132px; justify-self: end; margin: 14px; isolation: isolate; }
+.hm-footer .hm-footer-headshot { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hm-footer-portrait::before { content: ''; position: absolute; inset: -7px; border: 3px solid var(--secondary); pointer-events: none; }
+.hm-footer-portrait::after { content: ''; position: absolute; inset: -14px -16px -8px -6px; border: 2px solid transparent; border-right-color: var(--primary-soft); border-bottom-color: var(--primary-soft); z-index: -1; pointer-events: none; }
+@media (min-width: 768px) and (max-width: 1100px) {
+ .hm-publication .hm-ebook-cover { max-width: 320px; }
+ .hm-collection .hm-button { padding-inline: 10px; font-size: 14px; }
+}
+@media (max-width: 767px) {
+ .hm-collection { padding-block: 48px; }
+ .hm-collection-artwork { padding-top: 96px; width: 100%; max-width: 420px; margin-inline: auto; }
+ .hm-collection-badge { width: 72px; height: 72px; }
+ .hm-collection-badge strong { font-size: 24px; }
+ .hm-collection-badge span { font-size: 8px; }
+ .hm-collection .hm-book-covers { display: flex; gap: 10px; }
+ .hm-collection .hm-cover, .hm-collection .hm-cover:first-child { width: calc((100% - 20px)/3); margin: 0; }
+ .hm-collection .hm-actions { flex-direction: column; }
+ .hm-collection .hm-button { width: 100%; }
+ .hm-publication .hm-ebook-cover { max-width: 260px; }
+ .hm-footer-invitation { grid-template-columns: minmax(0,1fr) 120px; gap: 24px 12px; }
+ .hm-footer-portrait { width: 92px; height: 92px; }
+ .hm-footer-invitation .hm-button { white-space: normal; }
+}
+
+/* Final controlled polish: typography and existing artwork scale only. */
+.hm-hero-full h1 { width: 100%; max-width: 650px; letter-spacing: -.035em; margin-bottom: 20px; }
+.hm-hero-full .hm-hero-copy > .hm-eyebrow { margin-bottom: 16px; }
+.hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { line-height: 1.55; }
+.hm-publication .hm-ebook-cover { max-width: 480px; }
+.hm-framework > .hm-container { max-width: 1200px; }
+.hm-pillars { gap: 36px; }
+.hm-pillar-mark { margin-bottom: 16px; }
+.hm-pillar-mark .hm-icon svg { width: 52px; height: 52px; }
+.hm-pillars:before { top: 26px; left: 26px; right: 26px; }
+.hm-pillars h3 { font-weight: 700; margin-bottom: 10px; }
+.hm-pillars p { max-width: none; }
+.hm-faq-question { line-height: 1.45; }
+@media (min-width: 768px) {
+ .hm-collection .hm-book-covers { transform: scale(1.13); transform-origin: center bottom; }
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+ .hm-hero-full h1 { font-size: clamp(46px,4.8vw,58px); }
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+ .hm-publication .hm-ebook-cover { max-width: 360px; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+ .hm-pillar-mark .hm-icon svg { width: 44px; height: 44px; }
+ .hm-pillars h3 { font-size: 20px; }
+ .hm-pillars:before { top: 22px; left: 22px; right: 22px; }
+}
+@media (max-width: 768px) {
+ .hm-hero-full .hm-hero-copy { width: 100%; padding: 48px 20px; }
+ .hm-hero-full h1 { font-size: clamp(36px,9vw,46px); }
+ .hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { font-size: 16px; }
+}
+@media (max-width: 767px) {
+ .hm-publication .hm-ebook-cover { max-width: 290px; }
+ .hm-pillars { gap: 32px; }
+ .hm-pillar-mark { margin-bottom: 0; }
+ .hm-pillar-mark .hm-icon svg { width: 40px; height: 40px; }
+ .hm-pillars:before { top: 20px; left: 20px; right: auto; }
+}
+@media (min-width: 1200px) { .hm-hero-full h1 { font-size: 48px; } }
+
+
+/* Final mobile corrections, scoped to the homepage only. */
+@media (max-width: 768px) {
+ .hm-home .hm-hero-full h1 { margin-bottom: 16px; }
+ .hm-home .hm-hero-full .hm-hero-copy > p:not(.hm-eyebrow) { font-size: 16px; line-height: 1.6; }
+ .hm-home .hm-hero-full .hm-actions { margin-top: 24px; }
+ .hm-home ~ .hm-footer .hm-footer-invitation { grid-template-columns: minmax(0,1fr) 120px; gap: 20px 12px; align-items: start; }
+ .hm-home ~ .hm-footer .hm-footer-invitation > div:first-child { display: contents; }
+ .hm-home ~ .hm-footer .hm-footer-invitation > div:first-child > .hm-eyebrow { grid-column: 1 / -1; grid-row: 1; margin: 0; }
+ .hm-home ~ .hm-footer .hm-footer-invitation h2 { grid-column: 1; grid-row: 2; margin: 0; overflow-wrap: anywhere; }
+ .hm-home ~ .hm-footer .hm-footer-portrait { grid-column: 2; grid-row: 2; width: 92px; height: 92px; }
+ .hm-home ~ .hm-footer .hm-footer-invitation > div:nth-child(2) { grid-column: 1 / -1; grid-row: 3; }
+ .hm-home ~ .hm-footer .hm-engagements { font-size: 16px; line-height: 1.6; margin-top: 12px; }
+ .hm-home ~ .hm-footer .hm-form-status { font-size: 16px; line-height: 1.6; }
+}
+
+/* Mobile alignment only: preserve desktop rules and button treatments. */
+@media (max-width: 768px) {
+ .hm-home .hm-actions { margin-inline: 0; padding-inline: 0; justify-content: flex-start; align-self: stretch; }
+ .hm-home .hm-button, .hm-home ~ .hm-footer .hm-footer-invitation .hm-button { margin-inline: 0; }
+ .hm-home .hm-collection-artwork { padding-inline: 6px; margin-inline: auto; justify-self: center; }
+ .hm-home .hm-collection .hm-book-covers { margin-inline: auto; transform: none; justify-content: center; }
+ .hm-home .hm-collection-copy { text-align: left; min-width: 0; }
+ .hm-home .hm-collection .hm-actions { box-sizing: border-box; width: 100%; max-width: none; min-width: 0; margin-inline: 0; padding-inline: 0; flex-direction: column; align-items: stretch; gap: 12px; }
+ .hm-home .hm-collection .hm-actions > .hm-button { box-sizing: border-box; width: 100%; max-width: none; min-width: 0; margin-inline: 0; flex: none; align-self: stretch; }
+ .hm-home ~ .hm-footer .hm-footer-invitation > div:nth-child(2) { margin-inline: 0; padding-inline: 0; justify-self: stretch; text-align: left; }
+}

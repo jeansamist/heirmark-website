@@ -1,55 +1,8 @@
-import Events from "@/components/home/Events";
-import Footer from "@/components/home/Footer";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "HeirMark Events",
-  description:
-    "Join HeirMark workshops, storytelling circles, and healing sessions designed to deepen identity, connection, and legacy.",
-  alternates: {
-    canonical: "/events",
-  },
-  openGraph: {
-    title: "HeirMark Events",
-    description:
-      "Join HeirMark workshops, storytelling circles, and healing sessions designed to deepen identity, connection, and legacy.",
-    url: "/events",
-    images: [
-      {
-        url: "/workshop.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HeirMark Events",
-    description:
-      "Join HeirMark workshops, storytelling circles, and healing sessions designed to deepen identity, connection, and legacy.",
-    images: ["/workshop.png"],
-  },
-};
-
-export default function EventsPage() {
-  return (
-    <main className="bg-background text-foreground">
-      <section className="pt-28 pb-8 md:pt-36 md:pb-12">
-        <div className="container mx-auto px-6">
-          <p className="text-primary font-semibold uppercase tracking-[0.2em] text-xs">
-            HeirMark Events
-          </p>
-          <h1 className="mt-4 text-4xl md:text-6xl font-serif">
-            Gather, Reflect, and Heal Together
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            Workshops, storytelling circles, and community healing sessions led
-            by the HeirMark team.
-          </p>
-        </div>
-      </section>
-      <Events />
-      <Footer />
-    </main>
-  );
-}
+import PageSeo from "@/components/seo/PageSeo";
+import { withSocialMetadata } from "@/lib/seo-metadata";
+import EventArchive from "./EventArchive";
+import type {Metadata} from "next";import Image from "next/image";
+import {eventCatalog,isPast} from "@/data/event-catalog";import EventIcon from "./EventIcon";import EventsMotion from "./EventsMotion";import "./events.css";
+export const dynamic="force-dynamic";
+export const metadata:Metadata=withSocialMetadata({title:{absolute:"HeirMark Events | Workshops & Community Gatherings"},description:"Explore upcoming HeirMark events, community gatherings, workshops, and meaningful experiences centered on healing, connection, and legacy.",alternates:{canonical:"/events"}}, "/events");
+export default function EventsPage(){const upcoming=eventCatalog.filter(e=>!isPast(e)).sort((a,b)=>a.startDate.localeCompare(b.startDate));const past=eventCatalog.filter(e=>isPast(e)).sort((a,b)=>b.startDate.localeCompare(a.startDate));return <main tabIndex={-1} id="main-content" className="ev-page ev-listing"><PageSeo path="/events" name="HeirMark Events"/><EventsMotion/><section className="ev-section ev-hero ev-container"><div className="ev-hero-copy"><p className="ev-eyebrow">HEIRMARK EVENTS</p><h1>Gather, Reflect, and Heal Together.</h1><p>Workshops, storytelling circles, and community healing sessions led by the HeirMark team.</p></div><Image className="ev-hero-photo" src="/gallery/heirmark-events-group-conversation.webp" alt="Adults sharing stories in a small group discussion." width={1600} height={800} sizes="(max-width:768px) calc(100vw - 32px), (max-width:1100px) calc(100vw - 64px), (max-width:1280px) calc(100vw - 80px), 1200px" priority/></section><section className="ev-section ev-container" id="upcoming"><h2>Upcoming Events</h2>{upcoming.length?<EventArchive events={upcoming} upcoming/>:<div className="ev-empty" data-ev-reveal><EventIcon name="calendar"/><h3>No Upcoming Events Right Now</h3><p>New experiences are on the way. Check back soon for upcoming HeirMark gatherings, workshops, and community events.</p></div>}</section><section className="ev-section ev-container" id="past"><h2>Past Events</h2><EventArchive events={past}/></section></main>}

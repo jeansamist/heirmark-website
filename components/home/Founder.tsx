@@ -12,7 +12,7 @@ export default function Founder() {
             <div className="aspect-3/4 rounded-2xl overflow-hidden relative border border-border">
               <Image
                 alt="Dr. Muria Nisbett"
-                src="/founder.jpeg"
+                src="/dr-muria-nisbett-professional-headshot.jpeg"
                 fill
                 className="object-cover"
               />

@@ -1,0 +1,125 @@
+{
+  "hero": {
+    "eyebrow": "THE HEIRMARK COLLECTION",
+    "title": "One Complete System. Three Companion Books.",
+    "paragraphs": [
+      "Healing begins with understanding. Connection grows through conversation. Legacy lives through the stories we preserve.",
+      "The HeirMark Collection brings these experiences together in three companion books designed to help families explore their identity, strengthen their relationships, and preserve what matters for generations to come."
+    ],
+    "cta": "Buy the Collection",
+    "detail": "Complete Three-Book Collection | $75"
+  },
+  "journey": {
+    "eyebrow": "THE JOURNEY",
+    "title": "Three Books. One Meaningful Journey.",
+    "paragraphs": [
+      "Every family carries stories, experiences, and traditions that shape who they are. Some bring strength and belonging. Others invite reflection, understanding, and healing.",
+      "The HeirMark Collection offers a way to explore those experiences together, moving through three connected pillars of the HeirMark Framework."
+    ],
+    "pillars": [
+      {
+        "title": "IDENTITY",
+        "heading": "Understand What Shaped You.",
+        "description": "Explore the experiences, memories, cultural influences, and generational patterns that contribute to your sense of self and family identity."
+      },
+      {
+        "title": "CONNECTION",
+        "heading": "Strengthen the Relationships That Matter.",
+        "description": "Discover more intentional ways to communicate, build trust, and create space for understanding across generations."
+      },
+      {
+        "title": "LEGACY",
+        "heading": "Preserve What Deserves to Live On.",
+        "description": "Capture the stories, wisdom, values, and traditions that help future generations understand where they come from."
+      }
+    ],
+    "closing": "Each book has its own purpose. Together, they create a connected journey from understanding your story to strengthening your relationships and preserving your legacy."
+  },
+  "inside": {
+    "eyebrow": "EXPLORE THE THREE COMPANION BOOKS",
+    "title": "Every Book Has a Purpose. Every Story Matters.",
+    "books": [
+      {
+        "eyebrow": "BOOK 01 | IDENTITY",
+        "title": "Where Healing Becomes Heritage",
+        "edition": null,
+        "support": "Understand your story. Recognize what shaped it.",
+        "paragraphs": [
+          "Our identities are shaped by more than the present. Family experiences, cultural traditions, relationships, and memories influence how we see ourselves and connect with others.",
+          "*Where Healing Becomes Heritage* invites readers to reflect on those influences, recognize generational patterns, and explore the relationship between personal healing and the legacy they hope to create."
+        ],
+        "listLabel": "Inside this book, you'll explore:",
+        "points": [
+          "How identity, memory, and culture shape your experiences.",
+          "Generational patterns that influence families and relationships.",
+          "Emotional and cultural wounds that may call for understanding and healing.",
+          "The foundations of a more intentional family legacy."
+        ],
+        "role": "**The role of this book:** Understanding where you come from and what you carry forward."
+      },
+      {
+        "eyebrow": "BOOK 02 | CONNECTION",
+        "title": "The Language of Healing",
+        "edition": "Parent–Child Edition",
+        "support": "Create space for understanding. Strengthen family connection.",
+        "paragraphs": [
+          "The way we communicate can shape how safe, heard, and understood we feel within our families.",
+          "*The Language of Healing* focuses on the relationships between parents and children, encouraging more thoughtful communication, mutual respect, and emotional connection.",
+          "It offers families a way to reflect on how they speak, listen, respond, and build trust through everyday interactions."
+        ],
+        "listLabel": "Inside this book, you'll explore:",
+        "points": [
+          "Communicating with greater care and intention.",
+          "Creating emotionally safe and respectful relationships.",
+          "Navigating conflict while strengthening trust.",
+          "Supporting children's emotional resilience and family connection."
+        ],
+        "role": "**The role of this book:** Turning understanding into more meaningful relationships."
+      },
+      {
+        "eyebrow": "BOOK 03 | LEGACY",
+        "title": "Where Conversations Become Keepsakes",
+        "edition": null,
+        "support": "Because the stories we share today can become the treasures of tomorrow.",
+        "paragraphs": [
+          "Every family holds stories worth remembering.",
+          "Some are shared around dinner tables. Others live in the memories of parents, grandparents, and elders. Without intentional conversations, important pieces of family history can be lost.",
+          "*Where Conversations Become Keepsakes* invites families to preserve those stories, memories, traditions, and lessons so they can continue to inspire future generations."
+        ],
+        "listLabel": "Inside this book, you'll explore:",
+        "points": [
+          "Recording meaningful family stories and memories.",
+          "Honoring the experiences and wisdom of elders.",
+          "Preserving cultural heritage, traditions, and values.",
+          "Creating keepsakes that connect generations."
+        ],
+        "role": "**The role of this book:** Transforming meaningful conversations into a legacy that can be shared."
+      }
+    ]
+  },
+  "life": {
+    "eyebrow": "MORE THAN BOOKS",
+    "title": "Make Room for the Conversations That Matter.",
+    "paragraphs": [
+      "The HeirMark Collection is designed to be more than something you read and place on a shelf.",
+      "It is an invitation to reflect on your experiences, approach family relationships with greater intention, and make time for the stories that deserve to be remembered.",
+      "You can begin with your own reflections, share what you discover with loved ones, and invite family members into meaningful conversations when they feel ready.",
+      "There is no need to have every answer or resolve every family story at once.",
+      "What matters is creating space for understanding, connection, and the preservation of what makes your family unique."
+    ],
+    "closing": "The journey begins with identity, grows through connection, and continues through legacy."
+  },
+  "purchase": {
+    "eyebrow": "BEGIN YOUR HEIRMARK JOURNEY",
+    "title": "Three Companion Books. One Complete Collection.",
+    "paragraphs": [
+      "Bring the HeirMark Framework into your hands with three books created to be experienced together.",
+      "From understanding the experiences that shaped you, to strengthening family relationships and preserving the stories that matter, each companion book contributes to one connected journey."
+    ],
+    "price": "$75 | COMPLETE THREE-BOOK COLLECTION",
+    "emphasis": "Sold exclusively as a collection, by design.",
+    "explanation": "The three books are not sold separately, preserving the integrity of the Framework and the journey they are intended to support.",
+    "cta": "Buy the Collection",
+    "detail": "All three companion books included in one complete set."
+  }
+}

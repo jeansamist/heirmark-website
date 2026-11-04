@@ -6,12 +6,14 @@ import Image from "next/image";
 import {
   useEffect,
   useState,
+  useRef,
   type ChangeEvent,
   type FormEvent,
 } from "react";
 
 type BuyPageContentProps = {
   wasCanceled: boolean;
+  approvedPresentation?: { intro: string; description: string };
 };
 
 type CheckoutFormData = {
@@ -25,19 +27,19 @@ const books = [
   {
     title: "Where Healing Becomes Heritage",
     subtitle: "Book I",
-    image: "/book1.png",
+    image: "/where-healing-becomes-heritage-cover.png",
     description: "Uncovering the stories that shaped who you are.",
   },
   {
     title: "The Language of Healing",
     subtitle: "Book II",
-    image: "/book2.png",
+    image: "/the-language-of-healing-cover.png",
     description: "Restoring trust and tenderness across generations.",
   },
   {
     title: "Where Conversations Become Keepsakes",
     subtitle: "Book III",
-    image: "/book3.png",
+    image: "/where-conversations-become-keepsakes-cover.png",
     description: "Preserving wisdom your family can return to.",
   },
 ];
@@ -83,7 +85,11 @@ function validateForm(formData: CheckoutFormData) {
   return errors;
 }
 
-export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
+export default function BuyPageContent({
+  wasCanceled,
+  approvedPresentation,
+}: BuyPageContentProps) {
+  const purchaseDialog = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -103,9 +109,11 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
 
   useEffect(() => {
     if (!isModalOpen) {
-      document.body.style.overflow = "";
       return;
     }
+    const previousOverflow = document.body.style.overflow;
+    const trigger = document.activeElement as HTMLElement | null;
+    purchaseDialog.current?.querySelector<HTMLElement>("input")?.focus();
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -113,12 +121,29 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
         setSubmitError("");
         setFormErrors({});
       }
+      if (event.key === "Tab") {
+        const controls = Array.from(
+          purchaseDialog.current?.querySelectorAll<HTMLElement>(
+            "button:not(:disabled), input, textarea",
+          ) ?? [],
+        );
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
     };
 
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleEscape);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      trigger?.focus();
       window.removeEventListener("keydown", handleEscape);
     };
   }, [isModalOpen]);
@@ -178,185 +203,227 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
   };
 
   const quantity = Number.parseInt(formData.quantity, 10);
-  const safeQuantity = Number.isInteger(quantity) && quantity > 0 ? quantity : 1;
+  const safeQuantity =
+    Number.isInteger(quantity) && quantity > 0 ? quantity : 1;
   const checkoutTotal = collectionPrice * safeQuantity;
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[linear-gradient(150deg,#f8f4ea_0%,#f2ebdc_55%,#ebe3d3_100%)] pt-28 pb-18 md:pt-36 md:pb-24">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-[8%] -right-[6%] h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(196,168,130,0.16)_0%,transparent_72%)]" />
-          <div className="absolute -bottom-[10%] -left-[4%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(45,95,110,0.12)_0%,transparent_72%)]" />
-        </div>
-
-        <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
-          <Reveal className="mb-12 flex justify-center">
-            <div
-              className="inline-flex items-center justify-center rounded-full px-4 py-2.5 sm:px-5"
-              style={{
-                border: "1.5px solid rgba(184, 151, 42, 0.5)",
-                background: "rgba(249, 248, 243, 0.9)",
-              }}
-            >
-              <span className="text-center font-sans text-[11px] leading-tight font-medium tracking-[0.2px] text-[#2f3e36] sm:text-[12px]">
-                Official Launch Price — ${collectionPrice} (Limited First
-                Release)
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.05} className="mb-5 text-center">
-            <h1 className="font-serif font-bold leading-[1.08] tracking-tight text-[#1f2f2a] text-[34px] sm:text-5xl md:text-[58px]">
-              The HeirMark
-              <br />
-              <em className="italic text-primary">3-Book Collection</em>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.08} className="mb-6 flex justify-center">
-            <div
-              className="h-[1.5px] w-20"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, #C4A882, transparent)",
-              }}
-            />
-          </Reveal>
-
-          <Reveal delay={0.1} className="mb-14">
-            <p className="mx-auto max-w-2xl text-center font-sans text-base leading-[1.7] tracking-[0.1px] text-[#3d3a32] sm:text-lg sm:leading-[1.75] md:text-xl">
-              Turn healing into heritage. Strengthen your family&apos;s
-              connection and protect the stories, wisdom, and legacy that
-              deserve to live on.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.12} className="mb-18 flex justify-center">
-            <div className="relative flex h-[220px] w-full max-w-[340px] items-end justify-center sm:h-[260px] sm:max-w-[380px]">
-              <div className="absolute left-0 bottom-2 z-10 w-[104px] -rotate-8 rounded-[20px] border border-[#c4a882]/40 bg-white/90 p-2 sm:left-2 sm:w-[120px] sm:rounded-[24px]">
-                <Image
-                  src={books[0].image}
-                  alt={books[0].title}
-                  width={260}
-                  height={260}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-              <div className="absolute left-1/2 bottom-4 z-30 w-[116px] -translate-x-1/2 rounded-[20px] border border-[#c4a882]/40 bg-white p-2 sm:w-[132px] sm:rounded-[24px]">
-                <Image
-                  src={books[1].image}
-                  alt={books[1].title}
-                  width={260}
-                  height={260}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-              <div className="absolute right-0 bottom-2 z-20 w-[104px] rotate-8 rounded-[20px] border border-[#c4a882]/40 bg-white/90 p-2 sm:right-2 sm:w-[120px] sm:rounded-[24px]">
-                <Image
-                  src={books[2].image}
-                  alt={books[2].title}
-                  width={260}
-                  height={260}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-2 left-1/2 h-5 w-64 -translate-x-1/2 rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(ellipse, rgba(28,36,32,0.2) 0%, transparent 70%)",
-                  filter: "blur(6px)",
-                }}
-              />
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={0.15}
-            className="mb-12 rounded-2xl border border-[#c4a882]/25 bg-white/55 px-4 py-5 backdrop-blur-sm sm:px-6 sm:py-6"
-          >
-            <div className="flex flex-col gap-3">
-              {books.map((book, i) => (
-                <div
-                  key={book.title}
-                  className="flex flex-wrap items-start gap-3 py-2.5 sm:flex-nowrap sm:items-center sm:gap-4"
-                  style={{
-                    borderBottom:
-                      i < books.length - 1
-                        ? "1px solid rgba(196, 168, 130, 0.18)"
-                        : "none",
-                  }}
-                >
-                  <div className="h-8 w-8 shrink-0 rounded-lg bg-[linear-gradient(135deg,#2d5f6e,#1f3d46)]" />
-                  <div className="min-w-0 flex-1">
-                    <p className="font-serif text-[17px] font-semibold leading-tight text-[#1f2f2a] sm:text-[18px]">
-                      {book.title}
-                    </p>
-                    <p className="mt-0.5 text-xs tracking-[0.2px] text-[#6f6a5e]">
-                      {book.description}
-                    </p>
-                  </div>
-                  <span className="pl-11 text-[10px] font-medium uppercase tracking-[2px] text-[#b8972a] sm:pl-0 sm:whitespace-nowrap">
-                    {book.subtitle}
-                  </span>
+      {approvedPresentation ? (
+        <section className="hm-section hm-container hm-destination">
+          <h1>The HeirMark Collection</h1>
+          <div className="hm-book-layout">
+            <div className="hm-book-covers">
+              {books.map((book) => (
+                <div className="hm-cover" key={book.title}>
+                  <Image
+                    src={book.image}
+                    alt={book.title}
+                    width={933}
+                    height={1080}
+                    sizes="(max-width:767px) 65vw, 21vw"
+                  />
                 </div>
               ))}
             </div>
-          </Reveal>
+            <div>
+              <p className="hm-lead">{approvedPresentation.intro}</p>
+              <p>{approvedPresentation.description}</p>
+              <ol>
+                {books.map((book, index) => (
+                  <li key={book.title}>
+                    {book.title} — {["Identity", "Connection", "Legacy"][index]}
+                  </li>
+                ))}
+              </ol>
+              <p className="hm-price">
+                $75.00 <span>Complete three-book collection</span>
+              </p>
+              {wasCanceled && (
+                <p role="status">Your Stripe checkout was canceled.</p>
+              )}
+              <button type="button" className="hm-button" onClick={openModal}>
+                Order complete collection
+              </button>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="relative overflow-hidden bg-[linear-gradient(150deg,#f8f4ea_0%,#f2ebdc_55%,#ebe3d3_100%)] pt-28 pb-18 md:pt-36 md:pb-24">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-[8%] -right-[6%] h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(196,168,130,0.16)_0%,transparent_72%)]" />
+            <div className="absolute -bottom-[10%] -left-[4%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(45,95,110,0.12)_0%,transparent_72%)]" />
+          </div>
 
-          <Reveal delay={0.2} className="mb-9 text-center">
-            <div className="mb-3 flex flex-wrap justify-center gap-3 sm:gap-5">
-              {trustItems.map((item) => (
-                <span
-                  key={item}
-                  className="text-xs tracking-[0.2px] text-[#4c4a43]"
-                >
-                  {item}
+          <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
+            <Reveal className="mb-12 flex justify-center">
+              <div
+                className="inline-flex items-center justify-center rounded-full px-4 py-2.5 sm:px-5"
+                style={{
+                  border: "1.5px solid rgba(184, 151, 42, 0.5)",
+                  background: "rgba(249, 248, 243, 0.9)",
+                }}
+              >
+                <span className="text-center font-sans text-[11px] leading-tight font-medium tracking-[0.2px] text-[#2f3e36] sm:text-[12px]">
+                  Official Launch Price — ${collectionPrice} (Limited First
+                  Release)
                 </span>
-              ))}
-            </div>
-            <div className="mb-2 flex justify-center gap-0.5 text-[#b8972a]">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i}>★</span>
-              ))}
-            </div>
-            <p className="font-serif text-[15px] italic text-[#4c4a43]">
-              &ldquo;This collection changed how my family talks about the
-              past.&rdquo; — Early reader
-            </p>
-          </Reveal>
-
-          {wasCanceled && (
-            <Reveal
-              delay={0.22}
-              className="mb-6 rounded-2xl border border-secondary/60 bg-secondary/20 px-4 py-3 text-sm text-foreground"
-            >
-              Your Stripe checkout was canceled. You can continue from here
-              whenever you are ready.
+              </div>
             </Reveal>
-          )}
 
-          <Reveal delay={0.25} className="flex flex-col items-center gap-4">
-            <button
-              type="button"
-              onClick={openModal}
-              className="inline-flex w-full max-w-sm flex-wrap items-center justify-center gap-1.5 rounded-full bg-[linear-gradient(135deg,#2C3E35_0%,#1E3028_100%)] px-4 py-3 text-sm font-medium tracking-[0.2px] text-[#f8f4ea] transition hover:scale-[1.02] sm:gap-2 sm:px-7 sm:py-4 sm:text-base sm:tracking-[0.3px]"
+            <Reveal delay={0.05} className="mb-5 text-center">
+              <h1 className="font-serif font-bold leading-[1.08] tracking-tight text-[#1f2f2a] text-[34px] sm:text-5xl md:text-[58px]">
+                The HeirMark
+                <br />
+                <em className="italic text-primary">3-Book Collection</em>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.08} className="mb-6 flex justify-center">
+              <div
+                className="h-[1.5px] w-20"
+                style={{
+                  background:
+                    "linear-gradient(to right, transparent, #C4A882, transparent)",
+                }}
+              />
+            </Reveal>
+
+            <Reveal delay={0.1} className="mb-14">
+              <p className="mx-auto max-w-2xl text-center font-sans text-base leading-[1.7] tracking-[0.1px] text-[#3d3a32] sm:text-lg sm:leading-[1.75] md:text-xl">
+                Turn healing into heritage. Strengthen your family&apos;s
+                connection and protect the stories, wisdom, and legacy that
+                deserve to live on.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.12} className="mb-18 flex justify-center">
+              <div className="relative flex h-[220px] w-full max-w-[340px] items-end justify-center sm:h-[260px] sm:max-w-[380px]">
+                <div className="absolute left-0 bottom-2 z-10 w-[104px] -rotate-8 rounded-[20px] border border-[#c4a882]/40 bg-white/90 p-2 sm:left-2 sm:w-[120px] sm:rounded-[24px]">
+                  <Image
+                    src={books[0].image}
+                    alt={books[0].title}
+                    width={260}
+                    height={260}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <div className="absolute left-1/2 bottom-4 z-30 w-[116px] -translate-x-1/2 rounded-[20px] border border-[#c4a882]/40 bg-white p-2 sm:w-[132px] sm:rounded-[24px]">
+                  <Image
+                    src={books[1].image}
+                    alt={books[1].title}
+                    width={260}
+                    height={260}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <div className="absolute right-0 bottom-2 z-20 w-[104px] rotate-8 rounded-[20px] border border-[#c4a882]/40 bg-white/90 p-2 sm:right-2 sm:w-[120px] sm:rounded-[24px]">
+                  <Image
+                    src={books[2].image}
+                    alt={books[2].title}
+                    width={260}
+                    height={260}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="absolute -bottom-2 left-1/2 h-5 w-64 -translate-x-1/2 rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse, rgba(28,36,32,0.2) 0%, transparent 70%)",
+                    filter: "blur(6px)",
+                  }}
+                />
+              </div>
+            </Reveal>
+
+            <Reveal
+              delay={0.15}
+              className="mb-12 rounded-2xl border border-[#c4a882]/25 bg-white/55 px-4 py-5 backdrop-blur-sm sm:px-6 sm:py-6"
             >
-              Secure My Collection Today
-              <span className="rounded-full bg-white/15 px-3 py-0.5 text-sm font-semibold">
-                ${collectionPrice}
-              </span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <p className="text-center text-xs leading-relaxed tracking-[0.3px] text-[#6f6a5e]">
-              Launch pricing. Once early access closes, the price increases.
-              <br />
-              <span className="text-[#b8972a]">Secure your copy today.</span>
-            </p>
-          </Reveal>
-        </div>
-      </section>
+              <div className="flex flex-col gap-3">
+                {books.map((book, i) => (
+                  <div
+                    key={book.title}
+                    className="flex flex-wrap items-start gap-3 py-2.5 sm:flex-nowrap sm:items-center sm:gap-4"
+                    style={{
+                      borderBottom:
+                        i < books.length - 1
+                          ? "1px solid rgba(196, 168, 130, 0.18)"
+                          : "none",
+                    }}
+                  >
+                    <div className="h-8 w-8 shrink-0 rounded-lg bg-[linear-gradient(135deg,#2d5f6e,#1f3d46)]" />
+                    <div className="min-w-0 flex-1">
+                      <p className="font-serif text-[17px] font-semibold leading-tight text-[#1f2f2a] sm:text-[18px]">
+                        {book.title}
+                      </p>
+                      <p className="mt-0.5 text-xs tracking-[0.2px] text-[#6f6a5e]">
+                        {book.description}
+                      </p>
+                    </div>
+                    <span className="pl-11 text-[10px] font-medium uppercase tracking-[2px] text-[#b8972a] sm:pl-0 sm:whitespace-nowrap">
+                      {book.subtitle}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2} className="mb-9 text-center">
+              <div className="mb-3 flex flex-wrap justify-center gap-3 sm:gap-5">
+                {trustItems.map((item) => (
+                  <span
+                    key={item}
+                    className="text-xs tracking-[0.2px] text-[#4c4a43]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="mb-2 flex justify-center gap-0.5 text-[#b8972a]">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i}>★</span>
+                ))}
+              </div>
+              <p className="font-serif text-[15px] italic text-[#4c4a43]">
+                &ldquo;This collection changed how my family talks about the
+                past.&rdquo; — Early reader
+              </p>
+            </Reveal>
+
+            {wasCanceled && (
+              <Reveal
+                delay={0.22}
+                className="mb-6 rounded-2xl border border-secondary/60 bg-secondary/20 px-4 py-3 text-sm text-foreground"
+              >
+                Your Stripe checkout was canceled. You can continue from here
+                whenever you are ready.
+              </Reveal>
+            )}
+
+            <Reveal delay={0.25} className="flex flex-col items-center gap-4">
+              <button
+                type="button"
+                onClick={openModal}
+                className="inline-flex w-full max-w-sm flex-wrap items-center justify-center gap-1.5 rounded-full bg-[linear-gradient(135deg,#2C3E35_0%,#1E3028_100%)] px-4 py-3 text-sm font-medium tracking-[0.2px] text-[#f8f4ea] transition hover:scale-[1.02] sm:gap-2 sm:px-7 sm:py-4 sm:text-base sm:tracking-[0.3px]"
+              >
+                Secure My Collection Today
+                <span className="rounded-full bg-white/15 px-3 py-0.5 text-sm font-semibold">
+                  ${collectionPrice}
+                </span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <p className="text-center text-xs leading-relaxed tracking-[0.3px] text-[#6f6a5e]">
+                Launch pricing. Once early access closes, the price increases.
+                <br />
+                <span className="text-[#b8972a]">Secure your copy today.</span>
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {isModalOpen && (
         <div
@@ -369,6 +436,7 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
               className="w-full rounded-[30px] border border-border bg-background"
               onClick={(event) => event.stopPropagation()}
               role="dialog"
+              ref={purchaseDialog}
               aria-modal="true"
               aria-labelledby="checkout-modal-title"
             >
@@ -431,7 +499,9 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                     className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base text-foreground outline-none transition focus:ring-2 focus:ring-primary/30"
                   />
                   {formErrors.fullName && (
-                    <p className="text-sm text-red-600">{formErrors.fullName}</p>
+                    <p className="text-sm text-red-600">
+                      {formErrors.fullName}
+                    </p>
                   )}
                 </div>
 
@@ -472,7 +542,9 @@ export default function BuyPageContent({ wasCanceled }: BuyPageContentProps) {
                     className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base text-foreground outline-none transition focus:ring-2 focus:ring-primary/30"
                   />
                   {formErrors.quantity && (
-                    <p className="text-sm text-red-600">{formErrors.quantity}</p>
+                    <p className="text-sm text-red-600">
+                      {formErrors.quantity}
+                    </p>
                   )}
                 </div>
 

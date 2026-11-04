@@ -1,210 +1,80 @@
-import { BookingModalTrigger } from "@/components/booking/BookingModal";
-import {
-  ArrowRight,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-} from "lucide-react";
+import { Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const footerLinks = {
-  explore: [
-    { href: "/framework", label: "The HeirMark Framework" },
-    { href: "/collection", label: "The Book Collection" },
-    { href: "/events", label: "Events" },
-    { href: "/about", label: "About HeirMark" },
-    { href: "/book", label: "Book Dr. Nisbett" },
-  ],
-  work: [
-    { href: "/contact", label: "Contact" },
-    { href: "/events", label: "Event Registration" },
-    { href: "/buy", label: "Order Collection" },
-  ],
-};
-
-const socials = [
-  {
-    href: "https://www.instagram.com/heirmarkframework",
-    label: "Instagram",
-    icon: Instagram,
-  },
-  {
-    href: "https://www.linkedin.com/company/theheirmarkframework",
-    label: "LinkedIn",
-    icon: Linkedin,
-  },
-  {
-    href: "https://www.youtube.com/@TheHeirMarkFramework ",
-    label: "YouTube",
-    icon: Youtube,
-  },
-  {
-    href: "https://www.facebook.com/profile.php?id=61587878037283",
-    label: "Facebook",
-    icon: Facebook,
-  },
-];
-
-export default function Footer() {
+import { copy, legalLinks, verifiedSocialLinks } from "@/data/homepage";
+export default function Footer({ showInvitation = true }: { showInvitation?: boolean }) {
   return (
-    <footer
-      id="footer"
-      className="bg-foreground relative text-white pt-20 pb-8 overflow-hidden"
-    >
-      <Image
-        src="/icon-white.png"
-        alt="HeirMark Logo"
-        className="absolute top-0 right-0 opacity-5 pointer-events-none translate-x-1/2 translate-y-1/3"
-        width={800}
-        height={800}
-      />
-      {/* <div className="container mx-auto px-6 mb-16">
-        <Reveal className="bg-secondary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-secondary/40">
-          <Image
-            src="/leefs.png"
-            alt="HeirMark heritage pattern"
-            width={1920}
-            height={1080 / 2}
-            className="pointer-events-none absolute right-0 z-0 w-full bottom-0 hidden object-contain md:block"
-          />
-          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-5xl font-serif text-white">
-              Turn Healing into Heritage, Conversations into Keepsakes, and
-              Stories into Legacy.
-            </h2>
-            <div className="pt-4">
-              <Link
-                href="/buy"
-                className="inline-flex items-center gap-2 border border-white/30 min-h-12 bg-white text-secondary text-lg px-8 h-14 rounded-full font-bold hover:bg-white/90 transition"
-              >
-                <span className="hidden md:inline">
-                  Grab My HeirMark Collection
-                </span>
-                <span className="md:hidden text-sm">Grab Collection</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+    <footer className="hm-footer">
+      <div className="hm-container">
+        {showInvitation && <div className="hm-footer-invitation">
+          <div>
+            <p className="hm-eyebrow">BRING HEIRMARK TO YOUR COMMUNITY</p>
+            <h2>Meaningful Conversations. Lasting Impact.</h2>
+
+          </div>
+          <div>
+            <Link className="hm-button" href="/speaking">
+              Book Dr. Muria Nisbett <span aria-hidden="true">↗</span>
+            </Link>
+            <p className="hm-engagements">
+              Keynotes · Community Talks · Special Engagements
+            </p>
+          </div>
+          <div className="hm-footer-portrait"><Image className="hm-footer-headshot" src="/dr-muria-nisbett-professional-headshot.jpeg" alt="Dr. Muria I. Nisbett" width={1024} height={1536} sizes="(max-width: 767px) 92px, 132px" /></div>
+        </div>}
+        <div className="hm-footer-grid">
+          <div>
+            <Image
+              src="/heirmark-official-logo.png"
+              alt="HeirMark"
+              width={568}
+              height={103}
+              className="hm-logo"
+              sizes="240px"
+            />
+            <p>{copy("Transforming lived experiences")}</p>
+            <p>{copy("Rooted in identity, connection,")}</p>
+            <div className="hm-social-links">
+              {verifiedSocialLinks.map((s) => {
+                const Icon = { Instagram, LinkedIn: Linkedin, YouTube: Youtube, Facebook }[s.label];
+                return <a key={s.href} href={s.href} aria-label={`HeirMark on ${s.label}`}>{Icon && <Icon size={20} aria-hidden="true" />}</a>;
+              })}
             </div>
           </div>
-        </Reveal>
-      </div> */}
-
-      <div className="container mx-auto px-6 grid md:grid-cols-4 gap-12 border-t border-white/10 pt-16">
-        <div className="space-y-6">
-          <Image
-            src="/icon-white.png"
-            alt="HeirMark Logo"
-            width={64}
-            height={64}
-          />
-          <p className="text-white/60 text-sm">
-            Transforming lived experiences into Legacy.
-          </p>
-          <div className="flex gap-4">
-            {socials.map((social) => {
-              const Icon = social.icon;
-              return (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                >
-                  <Icon className="h-5 w-5" />
-                </Link>
-              );
-            })}
+          <nav aria-label="Footer explore">
+            <h3>Explore</h3>
+            <Link href="/framework">The HeirMark Framework</Link>
+            <Link href="/events">Events</Link>
+            <Link href="/books">Our Books</Link>
+            <Link href="/journal">Journal</Link>
+          </nav>
+          <nav aria-label="Footer connect">
+            <h3>Connect</h3>
+            <Link href="/partnerships">Partnerships</Link>
+            <Link href="/contact">Contact Us</Link>
+          </nav>
+          <div>
+            <h3>Stay Connected</h3>
+            <p>{copy("Get updates on HeirMark")}</p>
           </div>
         </div>
-
-        <div className="space-y-6">
-          <h4 className="font-bold uppercase tracking-wider text-sm text-white/40">
-            Explore
-          </h4>
-          <ul className="space-y-3 text-sm text-white/80">
-            {footerLinks.explore.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="hover:text-secondary transition"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="space-y-6">
-          <h4 className="font-bold uppercase tracking-wider text-sm text-white/40">
-            Work With Us
-          </h4>
-          <ul className="space-y-3 text-sm text-white/80">
-            {footerLinks.work.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="hover:text-secondary transition"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="pt-4 border-t border-white/10 mt-4">
-            <p className="text-white/90 font-bold mb-2">
-              Invite Dr Muria Nisbett to Speak
-            </p>
-            <p className="text-xs text-white/50 mb-2">
-              Keynotes • Community Talks • Special Engagements
-            </p>
-            <BookingModalTrigger className="text-secondary text-sm font-bold inline-flex items-center hover:underline">
-              Request a Booking
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </BookingModalTrigger>
+        <div className="hm-legal">
+          <span>© 2026 HeirMark</span>
+          <div>
+            {legalLinks.privacy ? (
+              <Link href={legalLinks.privacy}>Privacy Policy</Link>
+            ) : (
+              <span>Privacy Policy</span>
+            )}
+            {legalLinks.terms ? (
+              <Link href={legalLinks.terms}>Terms of Use</Link>
+            ) : (
+              <span>Terms of Use</span>
+            )}
           </div>
-        </div>
-
-        <div className="space-y-6">
-          <h4 className="font-bold uppercase tracking-wider text-sm text-white/40">
-            Stay Connected
-          </h4>
-          <p className="text-sm text-white/60">
-            Join the HeirMark Community for updates.
-          </p>
-          <div className="flex gap-2">
-            <input
-              className="flex h-10 w-full rounded-full border px-3 py-2 text-sm bg-white/10 border-white/10 text-white placeholder:text-white/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-              placeholder="Email address"
-            />
-            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold border border-white/30 min-h-10 px-4 py-2 bg-white text-foreground hover:bg-white/90 transition">
-              Join
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
-        <p>© 2026 HeirMark — All Rights Reserved</p>
-        <div className="flex gap-6 mt-4 md:mt-0">
-          <Link href="/privacy" className="hover:text-white">
-            Privacy Policy
-          </Link>
-          <Link href="/terms" className="hover:text-white">
-            Terms of Use
-          </Link>
-          <a
-            href="https://webandbuzz.com"
-            target="_blank"
-            rel="noopener"
-            style={{ opacity: 0.7 }}
-            className="hover:text-white"
-          >
-            Website by Web&amp;Buzz
-          </a>
         </div>
       </div>
     </footer>
   );
 }
+

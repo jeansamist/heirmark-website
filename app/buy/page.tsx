@@ -1,5 +1,4 @@
-import BuyPageContent from "@/components/buy/BuyPageContent";
-import Footer from "@/components/home/Footer";
+import { permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,26 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-type SearchParams = Record<string, string | string[] | undefined>;
-
-function isCanceledValue(value: string | string[] | undefined) {
-  if (Array.isArray(value)) {
-    return value.includes("1");
-  }
-  return value === "1";
-}
-
-export default async function BuyPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  const params = await searchParams;
-
-  return (
-    <main className="bg-background text-foreground">
-      <BuyPageContent wasCanceled={isCanceledValue(params.canceled)} />
-      <Footer />
-    </main>
-  );
+export default function BuyPage() {
+  permanentRedirect("/collection");
 }
