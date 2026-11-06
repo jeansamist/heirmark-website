@@ -1,4 +1,5 @@
 "use client";
+import { INQUIRY_TURNSTILE_REQUIRED } from "@/lib/inquiry-policy";
 import {useEffect,useRef,useState} from "react";
 export const inquiryFailure="We couldn't send your inquiry right now. Your information has been kept. Please try again shortly.";
 export const inquirySuccess="Your inquiry has been accepted for sending. Inbox delivery is not yet confirmed.";
@@ -11,7 +12,7 @@ export function useInquiry(endpoint:string){
  fetch(endpoint,{cache:'no-store',signal:abort.signal}).then(r=>r.ok?r.json():null).then(data=>{if(!cancelled)setReady(data?.ready===true)}).catch(()=>{if(!cancelled)setReady(false)}).finally(()=>{clearTimeout(timer);if(!cancelled)setChecking(false)});
  return ()=>{cancelled=true;abort.abort();clearTimeout(timer)};},[endpoint]);
  async function send(values:object){
- if(locked.current||sent.current||!ready||!turnstileToken)return null;
+ if(locked.current||sent.current||!ready||(INQUIRY_TURNSTILE_REQUIRED&&!turnstileToken))return null;
  locked.current=true;setStatus('sending');
  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),55000);
  try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,turnstileToken}),signal:controller.signal});const data=await response.json();
@@ -19,5 +20,5 @@ export function useInquiry(endpoint:string){
  sent.current=true;setStatus('success');return {errors:undefined};
  }catch{setStatus('error');return {errors:undefined};}finally{clearTimeout(timer);locked.current=false;resetVerification();}
  }
- return {ready,checking,status,send,turnstileToken,setTurnstileToken,verificationKey,resetVerification};
+ return {verificationRequired:INQUIRY_TURNSTILE_REQUIRED,ready,checking,status,send,turnstileToken,setTurnstileToken,verificationKey,resetVerification};
 }

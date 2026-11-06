@@ -1,4 +1,5 @@
 import "server-only";
+import { INQUIRY_TURNSTILE_REQUIRED } from "./inquiry-policy";
 import { turnstileConfigured, verifyTurnstile } from "./turnstile";
 import { NextResponse } from "next/server";
 import { validateContact } from "./contact-validation";
@@ -7,7 +8,7 @@ import { validateInquiry } from "./partnership-validation";
 import { sendContactFormEmail, sendBookingRequestEmail, sendPartnershipInquiryEmail, inquiryEmailReady } from "./email";
 const failure="We couldn't send your inquiry right now. Your information has been kept. Please try again shortly.";
 const json=(data:object,status=200)=>NextResponse.json(data,{status,headers:{'Cache-Control':'no-store'}});
-export async function inquiryStatus(){return json({ready:turnstileConfigured() && await inquiryEmailReady()});}
+export async function inquiryStatus(){return json({ready:(!INQUIRY_TURNSTILE_REQUIRED || turnstileConfigured()) && await inquiryEmailReady()});}
 export function inquiryHandler(kind:'contact'|'booking'|'partnership') {
  return async function POST(request:Request) {
   try {
@@ -30,8 +31,8 @@ export function inquiryHandler(kind:'contact'|'booking'|'partnership') {
    const partnership={fullName:str('fullName'),email:str('email'),organization:str('organization'),interest:str('interest'),idea:str('idea'),acknowledgment:body.acknowledgment===true};
    const errors=kind==='contact'?validateContact(contact):kind==='booking'?validateBooking(booking):validateInquiry(partnership);
    if(Object.keys(errors).length)return json({error:'Please check the highlighted fields.',errors},400);
-   if(!turnstileConfigured())return json({error:failure},503);
-   if(!await verifyTurnstile(body.turnstileToken,kind,request.url))return json({error:'Please complete security verification again.',code:'verification_failed'},403);
+   if(INQUIRY_TURNSTILE_REQUIRED && !turnstileConfigured())return json({error:failure},503);
+   if(INQUIRY_TURNSTILE_REQUIRED && !await verifyTurnstile(body.turnstileToken,kind,request.url))return json({error:'Please complete security verification again.',code:'verification_failed'},403);
    if(!await inquiryEmailReady())return json({error:failure},503);
    const result=kind==='contact'?await sendContactFormEmail(contact):kind==='booking'?await sendBookingRequestEmail(booking):await sendPartnershipInquiryEmail(partnership);
    if(!result.sent)return json({error:failure},result.skipped?503:502);

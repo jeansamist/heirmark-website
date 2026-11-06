@@ -25,7 +25,7 @@ export default function SpeakingForm() {
   const next=validateBooking(values,step===1?1:undefined);
   if(Object.keys(next).length){invalid(next);return;}
   if(step===1){move(2);return;}
-  if(!delivery.ready||!delivery.turnstileToken)return;
+  if(!delivery.ready||(delivery.verificationRequired&&!delivery.turnstileToken))return;
   locked.current=true;setStatus('sending');setMessage('');
   try {
    const response=await fetch('/api/booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,turnstileToken:delivery.turnstileToken,website:String(new FormData(event.currentTarget as HTMLFormElement).get("website")||"")}),signal:AbortSignal.timeout(55000)});
@@ -52,8 +52,8 @@ export default function SpeakingForm() {
     {step===1?<div className="sp-fields">{field('fullName','Full Name','text',true,'name')}{field('email','Email Address','email',true,'email')}{field('organization','Organization / Institution','text',false,'organization')}{field('phone','Phone Number','tel',false,'tel')}</div>:<><div className="sp-fields">{field('engagementType','Type of Engagement','text',true)}{field('eventFormat','Event Format','text',true)}{field('eventDate','Event Date','date')}{field('location','Event Location (City & Country)','text',values.eventFormat !== 'Virtual')}{field('details','Brief Event Description','text',true)}</div><label className="sp-consent"><input id="booking-consent" type="checkbox" checked={values.consent} onChange={e=>change('consent',e.target.checked)} required aria-invalid={!!errors.consent} aria-describedby={errors.consent?'error-consent':undefined}/><span>I understand this is a booking request and that the HeirMark team will follow up to discuss availability and next steps.</span></label>{errors.consent&&<p id="error-consent" className="sp-error">{errors.consent}</p>}</>}
     </fieldset></div>
     {status==='error'&&<p role="alert" className="sp-error sp-submit-error">{message}</p>}
-    {step===2&&<InquiryTurnstile action="booking" resetKey={delivery.verificationKey} onToken={delivery.setTurnstileToken}/>}
-    <div className="sp-actions">{step===2&&<button type="button" className="sp-back" disabled={status==='sending'} onClick={()=>move(1)}>Back</button>}<button type="submit" className="hm-button" disabled={status==='sending'||(step===2&&(!delivery.ready||!delivery.turnstileToken))}>{step===1?'Continue':status==='sending'?'Sending…':'Send Booking Request'}</button></div>
+    {step===2&&delivery.verificationRequired&&<InquiryTurnstile action="booking" resetKey={delivery.verificationKey} onToken={delivery.setTurnstileToken}/>}
+    <div className="sp-actions">{step===2&&<button type="button" className="sp-back" disabled={status==='sending'} onClick={()=>move(1)}>Back</button>}<button type="submit" className="hm-button" disabled={status==='sending'||(step===2&&(!delivery.ready||(delivery.verificationRequired&&!delivery.turnstileToken)))}>{step===1?'Continue':status==='sending'?'Sending…':'Send Booking Request'}</button></div>
     {step===2&&!delivery.ready&&<p role="status">{delivery.checking?"Checking booking availability…":"Booking submission is temporarily unavailable. Please try again later."}</p>}
     <p role="status" className="sp-sr">{status==='sending'?'Sending your booking request.':''}</p>
    </form>

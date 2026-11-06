@@ -20,8 +20,8 @@ export default function ContactPageForm(){
  <div className="ct-field"><label htmlFor="ct-inquiryType">Inquiry Type <span aria-hidden="true">*</span></label><select {...attrs("inquiryType")} defaultValue=""><option value="" disabled>Select inquiry type</option>{inquiryTypes.map(type=><option key={type}>{type}</option>)}</select>{error("inquiryType")}</div>
  <div className="ct-field"><label htmlFor="ct-message">Your Message <span aria-hidden="true">*</span></label><textarea {...attrs("message")} rows={6}/>{error("message")}</div>
  </fieldset>
- <InquiryTurnstile action="contact" resetKey={delivery.verificationKey} onToken={delivery.setTurnstileToken}/>
-<button className="hm-button" disabled={!delivery.turnstileToken||!delivery.ready||delivery.status==='sending'||delivery.status==='success'} aria-describedby="ct-submission-note" type="submit">{delivery.status==='sending'?'Sending…':'Send Message'}</button>
+ {delivery.verificationRequired&&<InquiryTurnstile action="contact" resetKey={delivery.verificationKey} onToken={delivery.setTurnstileToken}/>}
+<button className="hm-button" disabled={(delivery.verificationRequired&&!delivery.turnstileToken)||!delivery.ready||delivery.status==='sending'||delivery.status==='success'} aria-describedby="ct-submission-note" type="submit">{delivery.status==='sending'?'Sending…':'Send Message'}</button>
  <p role={delivery.status==='error'?'alert':'status'} id="ct-submission-note" className="ct-submission-note">{delivery.status==='success'?inquirySuccess:delivery.status==='error'?inquiryFailure:delivery.checking?'Checking message availability…':!delivery.ready?'Message submission is temporarily unavailable. Please try again later.':''}</p>
  </form></section>;
 }
