@@ -33,10 +33,10 @@ export const partnerLogos: {
   },
   {
     name: "AARP",
-    src: "/aarp-logo.svg",
-    alt: "AARP logo",
-    width: 156,
-    height: 41,
+    src: "/aarp-virgin-islands-logo.webp",
+    alt: "AARP The Virgin Islands logo",
+    width: 900,
+    height: 351,
   },
 ];
 // Official URLs restored from the repository's original Footer.tsx.

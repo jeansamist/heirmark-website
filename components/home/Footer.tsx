@@ -20,7 +20,7 @@ export default function Footer({ showInvitation = true }: { showInvitation?: boo
               Keynotes · Community Talks · Special Engagements
             </p>
           </div>
-          <div className="hm-footer-portrait"><Image className="hm-footer-headshot" src="/dr-muria-nisbett-professional-headshot.jpeg" alt="Dr. Muria I. Nisbett" width={1024} height={1536} sizes="(max-width: 767px) 92px, 132px" /></div>
+          <div className="hm-footer-portrait"><Image className="hm-footer-headshot" src="/dr-muria-nisbett-teal-blazer-footer.webp" alt="Dr. Muria I. Nisbett" width={550} height={959} style={{ objectPosition: "center 22%" }} sizes="(max-width: 767px) 92px, 132px" /></div>
         </div>}
         <div className="hm-footer-grid">
           <div>
