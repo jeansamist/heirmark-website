@@ -64,3 +64,6 @@ Live verification must check widget rendering, GET readiness and rejection of mi
 
 ## Temporary owner-approved activation — 2026-11-06
 Turnstile is temporarily paused through INQUIRY_TURNSTILE_REQUIRED=false in lib/inquiry-policy.ts while deployment configuration is investigated. This explicit shared policy applies to client controls and server handlers; no automatic fail-open behavior was added to verification. SMTP verification, field/type/length validation, same-origin checks, JSON/request size limits, honeypot, and client submission locks remain enabled. This temporarily reduces bot protection; durable rate limiting remains an infrastructure limitation. Restore the policy to true and deploy after validating both Turnstile keys. Actual inbox delivery still requires an authorized live submission and recipient confirmation.
+
+## Verification restored — 2026-11-06
+The owner requested the combined email and Turnstile workflow again. INQUIRY_TURNSTILE_REQUIRED is restored to true. The earlier pause is historical, not the active policy. Existing email service, form fields, templates, validation, and unrelated workspace files are preserved. Production SMTP and Turnstile configuration must still be verified independently; passing mocked tests does not confirm inbox delivery.
