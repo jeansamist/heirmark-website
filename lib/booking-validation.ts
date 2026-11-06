@@ -1,3 +1,4 @@
+import { inputErrors } from "./inquiry-validation";
 export const engagementTypes = ["Keynote", "Workshop / Training", "Community Healing Session", "Faith-Based Gathering", "Educational Event", "Other"] as const;
 export const eventFormats = ["In person", "Virtual", "Hybrid"] as const;
 export type BookingValues = { fullName: string; email: string; organization: string; phone: string; engagementType: string; eventFormat: string; eventDate: string; location: string; details: string; consent: boolean };
@@ -16,5 +17,6 @@ export function validateBooking(v: BookingValues, step?: 1 | 2): BookingErrors {
   if (!v.details.trim()) errors.details = "Tell us briefly about your event.";
   if (v.consent !== true) errors.consent = "Please acknowledge the booking request terms.";
  }
+ Object.assign(errors, inputErrors(step === 1 ? {fullName:v.fullName,email:v.email,organization:v.organization,phone:v.phone} : step === 2 ? Object.fromEntries(Object.entries(v).filter(([key])=>!["fullName","email","organization","phone"].includes(key))) : v));
  return errors;
 }

@@ -50,7 +50,7 @@ export function EmailLayout({
         <Container style={styles.outerContainer}>
           <Section style={styles.header}>
             <Img
-              src={`${siteUrl}/HEIRMARK-logo.png`}
+              src={`${siteUrl}/heirmark-official-logo.png`}
               width="132"
               alt="HeirMark"
               style={styles.logo}
