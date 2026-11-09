@@ -111,6 +111,7 @@ export default async function Home({
               alt="Two women talking at a table during a HeirMark gathering."
               fill
               priority
+              fetchPriority="high"
               sizes={fullBleed ? "100vw" : "(max-width: 767px) 100vw, 52vw"}
             />
           </div>
@@ -139,6 +140,7 @@ export default async function Home({
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
+                sizes={logo.name === "DRCVI" ? "(max-width: 767px) 155px, 215px" : "(max-width: 767px) 120px, 180px"}
               />
             ))}
           </div>

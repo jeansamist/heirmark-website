@@ -1,7 +1,7 @@
 import PageSeo from "@/components/seo/PageSeo";
 import { withSocialMetadata } from "@/lib/seo-metadata";
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { HeirMarkIcon, type IconName } from "@/components/home/HeirMarkIcon";
 import CollectionMotion from "./CollectionMotion";
@@ -9,6 +9,7 @@ import { collectionCovers } from "@/data/homepage";
 import copy from "@/data/collection-copy.json";
 import "./collection.css";
 
+const mobileHero = getImageProps({ src: "/heirmark-collection-mobile-960.webp", alt: "", width: 960, height: 775, sizes: "100vw" }).props;
 const coverBounds = [[213,183,524,713],[190,205,521,720],[175,211,551,755]];
 const checkout = "https://buy.stripe.com/4gM5kD0Rj8H20Hv4B07IY00";
 const title = "HeirMark Collection | Three Companion Books";
@@ -46,7 +47,7 @@ export default function CollectionPage() {
             <h1 id="collection-title">{copy.hero.title}</h1>
             {copy.hero.paragraphs.map(p => <p key={p}>{p}</p>)}
           </div>
-          <picture className="hc-hero-image"><source media="(max-width: 768px)" type="image/webp" srcSet="/heirmark-collection-mobile-640.webp 640w, /heirmark-collection-mobile-960.webp 960w" sizes="(max-width: 768px) 100vw, 50vw" /><Image src="/heirmark-collection-pedestals.png" alt="Three HeirMark companion books displayed together on stone pedestals." width={1254} height={1012} sizes="(max-width: 767px) 100vw, 50vw" priority /></picture>
+          <picture className="hc-hero-image"><source media="(max-width: 768px)" type="image/webp" srcSet={mobileHero.srcSet} sizes={mobileHero.sizes} /><Image src="/heirmark-collection-pedestals.png" alt="Three HeirMark companion books displayed together on stone pedestals." width={1254} height={1012} sizes="(max-width: 767px) 100vw, 50vw" loading="eager" fetchPriority="high" /></picture>
           <div className="hc-hero-purchase"><PurchaseButton label="Buy the Collection $75" /><p className="hc-detail">3-book collection</p></div>
         </div>
       </section>

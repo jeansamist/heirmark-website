@@ -31,6 +31,9 @@ const fontSerif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
+  // Only legacy/purchase views use this face. Let their CSS request it on demand
+  // instead of competing with every page's hero and primary sans-serif fonts.
+  preload: false,
 });
 
 export const metadata: Metadata = {
