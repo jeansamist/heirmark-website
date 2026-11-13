@@ -20,7 +20,7 @@ export default function PageSeo({path,name}:{path:string;name:string}) {
  if(path==="/collection") {
   const book=publications.find(b=>b.type==="collection")!;
   mainEntity=siteUrl(path+"#product");
-  nodes.push({"@type":"Product","@id":mainEntity,name:book.title,description:book.shortDescription,url:siteUrl(path),image:siteUrl(book.cover.src),brand:ref(entityIds.organization),additionalProperty:{"@type":"PropertyValue",name:"Included packaging",value:"Branded HeirMark presentation box"}});
+  nodes.push({"@type":"Product","@id":mainEntity,name:book.title,description:book.shortDescription,url:siteUrl(path),image:siteUrl(book.cover.src),brand:ref(entityIds.organization),offers:{"@type":"Offer",url:siteUrl(path),price:book.price!.toFixed(2),priceCurrency:"USD",seller:ref(entityIds.organization)},additionalProperty:{"@type":"PropertyValue",name:"Included packaging",value:"Branded HeirMark presentation box"}});
   nodes.push(breadcrumbs(path,[home,{name:"Our Books",path:"/books"},{name:book.title,path}]));
  }
  if(["/books","/events","/journal"].includes(path)) {
